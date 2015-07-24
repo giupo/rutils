@@ -21,6 +21,7 @@ Cluster <- setRefClass(
     initialize = function(ncores=detectCores()) {
       "Initializes the Cluster by the number of cores argument (ncores)"
       currentCluster <- getOption("CLUSTER", NULL)
+      .self$working <- FALSE
       if(!is.null(currentCluster)) {
         .self$cluster <- currentCluster
       } else {
