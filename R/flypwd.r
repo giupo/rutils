@@ -1,0 +1,35 @@
+
+#' Returns the password stored by flypwd
+#'
+#' @name flypwd
+#' @export
+#' @author Giuseppe Acito
+#' @return the current user's password
+#' @include options.r
+
+flypwd <- function(service=NULL, clean=FALSE) {
+  service <- ifelse(is.null(service), "default", service)
+  key <- paste("flypwd", service, sep="_")
+  cmd <- paste(file.path(system.file(package="rutils"), "flypwd"), service)
+  if(clean) {
+    setOption(key, NULL)
+    cmd <- paste(cmd, "--clean")
+  }
+ 
+  pwd <- getOption(key, NULL)
+  if(!is.null(pwd)) {
+    return(pwd)
+  }
+  
+  pwd <- tryCatch({
+    system(cmd, intern=TRUE)
+  }, warning=function(warn) {
+    stop(warn)
+  })
+  
+  if(length(pwd) > 1) {
+    pwd <- pwd[-1]
+  }
+  setOption(key, pwd)
+  pwd
+}
