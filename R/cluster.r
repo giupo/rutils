@@ -12,14 +12,30 @@
 #' @field working a logical status to fix some erratic behaviour of the internal cluster
 #' @import parallel doParallel
 #' @exportClass Cluster
-#' @export
+#' @export Cluster
 
 Cluster <- setRefClass(  
   "Cluster",
-  fields = c("ncores", "cluster", "working"),
+  fields = c("ncores", "cluster", "working", "active"),
   methods = list(
     initialize = function(ncores=detectCores()) {
       "Initializes the Cluster by the number of cores argument (ncores)"
+      .self$start()
+    },
+    
+    export = function(ids) {
+      "Exports the objects identified by `ids` to the cluster"
+      clusterExport(
+        .self$cluster,
+        ids)
+    },
+    
+    isWorking = function() {
+      "Returns `TRUE` is the cluster is in working state"
+      .self$working
+    },
+
+    start = function() {
       currentCluster <- getOption("CLUSTER", NULL)
       .self$working <- FALSE
       if(!is.null(currentCluster)) {
@@ -27,19 +43,29 @@ Cluster <- setRefClass(
       } else {
         .self$ncores <- ncores
         .self$cluster <- makeForkCluster(ncores=.self$ncores)
-      }      
+        .self$active <- TRUE
+      }
+      options(CLUSTER=.self$cluster)
     },
     
-    isWorking = function() {
-      "Returns `TRUE` is the cluster is in working state"
-      .self$working
+    shutdown = function() {
+      if(.self$active) {
+        tryCatch(
+          stopCluster(.self$cluster),
+          error = function(cond) {
+            warning(cond)
+          })
+        options(CLUSTER=NULL)
+        .self$active <- FALSE
+      } else {
+        warning("Cluster already closed")
+      }
     },
     
     submit = function(X, fun, ...) {
       "Submit a `fun` to the cluster to operate on the `X` data"
       if(.self$working) {
-        stopCluster(.self$cluster)
-        options(CLUSTER=NULL)
+        .self$shutdown()
         .self$initialize(.self$ncores)
       }
       
@@ -47,5 +73,5 @@ Cluster <- setRefClass(
       ret <- parLapply(.self$cluster, X, fun, ...)
       .self$working <- FALSE
       ret
-    } 
+    }
   ))
