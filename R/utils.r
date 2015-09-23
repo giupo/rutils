@@ -85,6 +85,11 @@ tempdir <- function(prefix = NULL) {
   substr(path, inizio, fine)
 }
 
+#' genera stringhe random
+#'
+#' @name .randomString
+#' @export 
+
 .randomString <- function(length=8, prefix="") {
   paste0(prefix, paste(
     sample(
@@ -92,6 +97,11 @@ tempdir <- function(prefix = NULL) {
       length, replace=TRUE),
     collapse=""))
 }
+
+#' controlla se una stringa e' nell'altra
+#'
+#' @name .containsString
+#' @export
 
 .containsString <- function(stringa, substring)
   as.numeric(regexpr(substring, stringa)) != -1
