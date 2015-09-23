@@ -4,6 +4,7 @@
 NULL
 
 library(testthat)
+library(methods)
 
 #' Test reporter: summary of errors in jUnit XML format.
 #'
@@ -147,8 +148,9 @@ JUnitReporter <- setRefClass("JUnitReporter", contains = "Reporter",
 
 if(require(XML)) {
   file.xml <- file.path(
-  Sys.getenv("WORKSPACE", "."), "tests",
-  paste0(Sys.getenv("BUILD_NUMBER", "tests"), ".xml"))
+    Sys.getenv("WORKSPACE", "."), "tests",
+    paste0(Sys.getenv("BUILD_NUMBER", "/tests"), ".xml"))
+  print (file.xml)
   reporter <- JUnitReporter$new(file.xml)
 } else {
   reporter = "summary"
