@@ -1,5 +1,8 @@
 #!/usr/bin/env Rscript
 
+#' @import testthat XML
+NULL
+
 library(testthat)
 
 #' Test reporter: summary of errors in jUnit XML format.

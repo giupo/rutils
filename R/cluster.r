@@ -10,7 +10,7 @@
 #' @field ncores stores the number of cores used for this cluster
 #' @field cluster the internal cluster
 #' @field working a logical status to fix some erratic behaviour of the internal cluster
-#' @import parallel doParallel
+#' @import parallel
 #' @exportClass Cluster
 #' @export Cluster
 

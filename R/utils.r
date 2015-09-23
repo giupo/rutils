@@ -1,4 +1,7 @@
-# Same as *nix command
+#' @import testthat XML
+NULL
+
+#' Same as *nix command
 #'
 #' if "username" is set as environment variable, it's preferred.
 #' 
@@ -88,6 +91,7 @@ tempdir <- function(prefix = NULL) {
 #' genera stringhe random
 #'
 #' @name .randomString
+#' @rdname randomString
 #' @export 
 
 .randomString <- function(length=8, prefix="") {
@@ -101,6 +105,7 @@ tempdir <- function(prefix = NULL) {
 #' controlla se una stringa e' nell'altra
 #'
 #' @name .containsString
+#' @rdname constainsString
 #' @export
 
 .containsString <- function(stringa, substring)
@@ -182,6 +187,7 @@ is.jenkins <- function() Sys.getenv("BUILD_URL") != ""
 #'           b = c("1", "2", "3")
 #'           combine2(a,b)
 #'           # ritorna "A1" "B1" "A2" "B2" "A3" "B3"
+#' @export
 
 combine2 <- function(..., prefix = "", sep = "") {
   suppressWarnings(paste0(prefix, levels(interaction(..., sep = sep))))
