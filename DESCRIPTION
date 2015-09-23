@@ -1,6 +1,6 @@
 Package: rutils
 Title: A bunch of utils
-Version: 0.0.5
+Version: 0.0.6
 Authors@R: person("Giuseppe", "Acito", email = "giuseppe.acito@gmail.com", role = c("aut", "cre"))
 Description: This is a bunch of utils I keep spreading in different packages: I
     decided to reunite them under a dedicated package.
