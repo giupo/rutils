@@ -1,4 +1,3 @@
-
 #' Returns the password stored by flypwd
 #'
 #' @name flypwd
