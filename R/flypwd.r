@@ -10,23 +10,25 @@
 flypwd <- function(service=NULL, clean=FALSE) {
   service <- ifelse(is.null(service), "default", service)
   key <- paste("flypwd", service, sep="_")
-  cmd <- paste(file.path(system.file(package="rutils"), "flypwd"), service)
+  flypwd_cmd <- tryCatch(file.path(system.file("flypwd", package="rutils", mustWork=TRUE)),
+    error = function(cond) "flypwd -p")
+  cmd <- paste(flypwd_cmd, service)
   if(clean) {
     setOption(key, NULL)
     cmd <- paste(cmd, "--clean")
   }
- 
+
   pwd <- getOption(key, NULL)
   if(!is.null(pwd)) {
     return(pwd)
   }
-  
+
   pwd <- tryCatch({
     system(cmd, intern=TRUE)
   }, warning=function(warn) {
     stop(warn)
   })
-  
+
   if(length(pwd) > 1) {
     pwd <- pwd[-1]
   }

@@ -71,3 +71,23 @@ if(!is.jenkins()) {
     expect_equal(length(pwd), 1)
   })
 }
+
+test_that("ini_parse works as expected", {
+    fileini <- file.path(system.file(package="rutils"), "inst/ini/test.ini")
+    ini <- ini_parse(fileini)
+    expect_true("section" %in% names(ini))
+    expect_true("section2" %in% names(ini))
+    section <- ini$section
+    expect_equal(section[["A"]], "B")
+    expect_equal(section[["B"]], "1")
+
+    section2 <- ini$section2
+    expect_equal(section2[["A"]], "B")
+    expect_equal(section2[["B"]], "A")
+
+})
+
+test_that("ini_parse throws an error with filename in it", {
+  fileini <- "/i/don/t/exist"
+  expect_error(ini_parse(fileini), fileini)
+})

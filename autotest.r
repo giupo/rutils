@@ -1,6 +1,7 @@
 #!/usr/bin/env Rscript
 library(testthat)
 library(devtools)
+library(methods)
 # options(env="test")
 options(GCLUSTER=F)
 load_all()
@@ -25,7 +26,7 @@ GrowlReporter <- setRefClass(
     "success_icon" = "character",
     "failed_icon" = "character",
     "show_praise" = "logical"),
-  
+
   methods = list(
     initialize = function(...) {
       failures <<- list()
@@ -33,11 +34,11 @@ GrowlReporter <- setRefClass(
       failed_count <<- 0L
       success_icon <<- "http://jetpackweb.com/blog/wp-content/uploads/2009/09/pass.png"
       failed_icon <<- "http://jetpackweb.com/blog/wp-content/uploads/2009/09/fail.png"
-      
+
       show_praise <<- TRUE
       callSuper(...)
     },
-    
+
     add_result = function(result) {
       if (result$passed) {
         passed_count <<- passed_count + 1L
@@ -47,8 +48,8 @@ GrowlReporter <- setRefClass(
         failures[[failed_count]] <<- result
       }
     },
-    
-    end_reporter = function() {      
+
+    end_reporter = function() {
       growl <- function(m, icon) {
         m <- gsub("\'","''", m)
         cmd <- if(is.windows()) {
@@ -59,7 +60,7 @@ GrowlReporter <- setRefClass(
         } else {
           paste('notify-send  "testthat" "',m,'" -i ', icon)
         }
-        
+
         invisible(suppressWarnings(
           system(cmd, intern=TRUE)))
       }
@@ -79,12 +80,12 @@ GrowlReporter <- setRefClass(
         icon <- failed_icon
         report_text <- paste(type, tests, msg, location)
       }
-      
+
       if(failed_count > 1) {
         icon <- failed_icon
         report_text <- paste0(report_text, ", ", failed_count, " failed tests")
       }
-           
+
       if(failed_count == 0 && passed_count > 10 && show_praise) {
         report_text <- paste0(report_text, ", ", sample(.praise, 1))
       }
