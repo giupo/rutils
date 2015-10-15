@@ -4,6 +4,7 @@
 #' @export
 #' @param filename
 #' @return a list containing the INI files' informations
+#' @include utils.r
 #' @note full credit to \url{http://goo.gl/V0jwlz}
 
 ini_parse <- function(filename) {
@@ -14,11 +15,7 @@ ini_parse <- function(filename) {
 
   connection <- file(filename)
 
-  Lines  <- tryCatch(
-    suppressWarnings(readLines(connection)),
-    error = function(cond) {
-        stop(filename, ":", cond)
-    })
+  Lines <- readLines(connection)
 
   close(connection)
 

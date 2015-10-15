@@ -1,10 +1,31 @@
 #' @import testthat XML
 NULL
 
+#' base::readLines error reporting sucks.
+#' @name readLines
+#' @seealso base::readLines
+#' @export
+
+readLines <- function(con=stdin(), n=-1L, ok=TRUE,
+                      warn=TRUE, encoding="unknown") {
+  tryCatch({
+    suppressWarnings(
+      base::readLines(
+        con=con, n=n, ok=ok, warn=warn, encoding=encoding))
+    },
+    error = function(cond) {
+      if(is.character(con)) {
+        stop('"', con, '": ', cond)
+      } else {
+        stop(cond)
+      }
+    })
+}
+
 #' Same as *nix command
 #'
 #' if "username" is set as environment variable, it's preferred.
-#' 
+#'
 #' @name whoami
 #' @export
 #' @author Giuseppe Acito
@@ -66,12 +87,12 @@ tempdir <- function(prefix = NULL) {
   if(!path %in% .tempdirs) {
     .tempdirs <- c(.tempdirs, path)
   }
-  
+
   path
 }
 
 #' Just like basename without the ext
-#' 
+#'
 #' @name .basename
 #' @rdname utils.Rd
 #' @author Giuseppe Acito
@@ -92,7 +113,7 @@ tempdir <- function(prefix = NULL) {
 #'
 #' @name .randomString
 #' @rdname randomString
-#' @export 
+#' @export
 
 .randomString <- function(length=8, prefix="") {
   paste0(prefix, paste(
