@@ -17,5 +17,5 @@ Collate:
     'cluster.r'
     'options.r'
     'flypwd.r'
-    'ini_parse.r'
     'utils.r'
+    'ini_parse.r'

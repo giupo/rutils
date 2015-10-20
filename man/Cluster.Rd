@@ -14,7 +14,7 @@ no value added, just a small API
 \item \code{export(Class)}: Returns the result of coercing the object to
 Class.  No effect on the object itself.
 
-\item \code{initialize(ncores = detectCores())}: Initializes the Cluster by the number of cores argument (ncores)
+\item \code{initialize(ncoresÂ =Â detectCores())}: Initializes the Cluster by the number of cores argument (ncores)
 
 \item \code{isWorking()}: Returns `TRUE` is the cluster is in working state
 
