@@ -20,7 +20,7 @@ Cluster <- setRefClass(
   methods = list(
     initialize = function(ncores=detectCores()) {
       "Initializes the Cluster by the number of cores argument (ncores)"
-      .self$start()
+      .self$start(ncores)
     },
     
     export = function(ids) {
@@ -35,14 +35,14 @@ Cluster <- setRefClass(
       .self$working
     },
 
-    start = function() {
+    start = function(ncores) {
       currentCluster <- getOption("CLUSTER", NULL)
       .self$working <- FALSE
       if(!is.null(currentCluster)) {
         .self$cluster <- currentCluster
       } else {
         .self$ncores <- ncores
-        .self$cluster <- makeForkCluster(.self$ncores)
+        .self$cluster <- makeForkCluster(ncores)
         .self$active <- TRUE
       }
       options(CLUSTER=.self$cluster)
