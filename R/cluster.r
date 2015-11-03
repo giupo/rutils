@@ -42,7 +42,7 @@ Cluster <- setRefClass(
         .self$cluster <- currentCluster
       } else {
         .self$ncores <- ncores
-        .self$cluster <- makeForkCluster(ncores=.self$ncores)
+        .self$cluster <- makeForkCluster(.self$ncores)
         .self$active <- TRUE
       }
       options(CLUSTER=.self$cluster)
