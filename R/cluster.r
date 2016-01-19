@@ -10,7 +10,9 @@
 #' @field ncores stores the number of cores used for this cluster
 #' @field cluster the internal cluster
 #' @field working a logical status to fix some erratic behaviour of the internal cluster
-#' @import parallel
+#' @importFrom parallel makeForkCluster clusterExport detectCores stopCluster parLapply
+#' @importFrom foreach foreach
+#' @importFrom doParallel registerDoParallel
 #' @exportClass Cluster
 #' @export Cluster
 
@@ -23,11 +25,17 @@ Cluster <- setRefClass(
       .self$start(ncores)
     },
     
-    export = function(ids) {
+    export = function(ids, envir=parent.frame()) {
       "Exports the objects identified by `ids` to the cluster"
       clusterExport(
         .self$cluster,
-        ids)
+        ids,
+        envir=envir)
+    },
+
+
+    evalQ = function(...) {
+        clusterEvalQ(.self$cluster, ...)
     },
     
     isWorking = function() {
@@ -44,6 +52,8 @@ Cluster <- setRefClass(
         .self$ncores <- ncores
         .self$cluster <- makeForkCluster(ncores)
         .self$active <- TRUE
+        setDefaultCluster(.self$cluster)
+        registerDoParallel(.self$cluster)
       }
       options(CLUSTER=.self$cluster)
     },
@@ -73,5 +83,9 @@ Cluster <- setRefClass(
       ret <- parLapply(.self$cluster, X, fun, ...)
       .self$working <- FALSE
       ret
+    },
+
+    foreach = function(..., .combine, FUN) {
+        foreach::foreach(..., .combine) %dopar% FUN
     }
   ))

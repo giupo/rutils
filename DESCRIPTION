@@ -9,6 +9,8 @@ Depends:
     R (>= 3.0.0),
     methods,
     parallel,
+    doParallel,
+    foreach,
     XML,
     testthat
 License: MIT + file LICENSE
