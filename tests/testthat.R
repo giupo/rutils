@@ -5,7 +5,7 @@ NULL
 
 library(testthat)
 library(methods)
-
+library(crayon)
 #' Test reporter: summary of errors in jUnit XML format.
 #'
 #' This reporter includes detailed results about each test and summaries,

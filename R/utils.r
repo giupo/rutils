@@ -236,6 +236,7 @@ notify <- function(titolo, msg, id=NULL) {
 #' @usage NOTIFY(titolo, msg, id)
 #' @param titolo titolo messaggio
 #' @param msg testo del messaggio
+#' @rdname notify-alt
 #' @param id eventuale id (per usi futuri)
 #' @export
 
