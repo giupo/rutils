@@ -73,7 +73,7 @@ if(!is.jenkins()) {
 }
 
 test_that("ini_parse works as expected", {
-    fileini <- file.path(system.file(package="rutils"), "inst/ini/test.ini")
+    fileini <- file.path(system.file(package="rutils"), "ini/test.ini")
     ini <- ini_parse(fileini)
     expect_true("section" %in% names(ini))
     expect_true("section2" %in% names(ini))

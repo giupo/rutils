@@ -25,34 +25,6 @@ xml_new_node <- function (name, attrs, children, text) {
   node
 }
 
-
-#' Test reporter: summary of errors in jUnit XML format.
-#'
-#' This reporter includes detailed results about each test and summaries,
-#' written to a file (or stdout) in jUnit XML format. This can be read by
-#' the Jenkins Continuous Integration System to report on a dashboard etc.
-#' Requires the XML package.
-#'
-#' This works for \code{\link{expect_that}} but not for the wrappers like
-#' \code{\link{expect_equal}} etc.
-#'
-#' To fit into the jUnit structure, context() becomes the \code{<testsuite>}
-#' name as well as the base of the \code{<testcase> classname}. The
-#' test_that() name becomes the rest of the \code{<testcase> classname}.
-#' The deparsed expect_that() call becomes the \code{<testcase>} name.
-#' On failure, the message goes into the \code{<failure>} node message
-#' argument (first line only) and into its text content (full message).
-#'
-#' Execution time and some other details are also recorded.
-#'
-#' References for the jUnit XML format:
-#' \url{http://llg.cubic.org/docs/junit/}
-#'
-#' Output drawn from the SummaryReporter is printed to the standard
-#' error stream during execution.
-#'
-#' @export
-#' @importFrom xml2 xml_new_document write_xml
 JunitReporter <- R6::R6Class("JunitReporter", inherit = Reporter,
   public = list(
     file = NULL,
@@ -153,7 +125,7 @@ JunitReporter <- R6::R6Class("JunitReporter", inherit = Reporter,
   )
 )
 
-if(Sys.getenv("WORKSPACE", "") == "") {
+if(Sys.getenv("BUILD_NUMBER","") != "") {
   file.xml <- file.path(
     Sys.getenv("WORKSPACE", "."), "tests",
     paste0(Sys.getenv("BUILD_NUMBER", "/tests"), ".xml"))
