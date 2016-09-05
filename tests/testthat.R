@@ -160,7 +160,7 @@ if(require(xml2)) {
   print (file.xml)
   reporter <- JunitReporter$new(file.xml)
 } else {
-  reporter = "summary"
+  reporter <- "summary"
 }
 
-test_check("rcf", reporter=reporter)
+test_check("rutils", reporter=reporter)
