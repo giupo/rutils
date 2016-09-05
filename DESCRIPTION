@@ -17,7 +17,6 @@ License: MIT + file LICENSE
 Suggests:
     devtools,
     crayon,
-    testthat,
     xml2,
     R6
 LazyData: true
