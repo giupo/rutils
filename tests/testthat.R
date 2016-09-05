@@ -153,7 +153,7 @@ JunitReporter <- R6::R6Class("JunitReporter", inherit = Reporter,
   )
 )
 
-if(require(xml2)) {
+if(!is.null(Sys.getenv("WORKSPACE", NULL))) {
   file.xml <- file.path(
     Sys.getenv("WORKSPACE", "."), "tests",
     paste0(Sys.getenv("BUILD_NUMBER", "/tests"), ".xml"))
