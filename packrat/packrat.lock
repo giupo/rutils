@@ -1,12 +1,12 @@
 PackratFormat: 1.4
-PackratVersion: 0.4.7.1
+PackratVersion: 0.4.7.23
 RVersion: 3.3.1
-Repos: CRAN=http://cran.mirror.garr.it/mirrors/CRAN/
+Repos: CRAN=http://cran.rstudio.com/
 
 Package: R6
 Source: CRAN
-Version: 2.1.3
-Hash: 1a8313c9df76d2a06aa27c13a4a71c73
+Version: 2.1.2
+Hash: c515e41c73294952cbb33ee1c1be5a2d
 
 Package: Rcpp
 Source: CRAN
@@ -31,8 +31,9 @@ Requires: crayon, httr, jsonlite, memoise, rex, withr
 
 Package: crayon
 Source: CRAN
-Version: 1.3.2
-Hash: 576a9d297a567d6a5ebd164ca5221590
+Version: 1.3.1
+Hash: b61d34886cf0f4b4fc4e4f52ea249390
+Requires: memoise
 
 Package: curl
 Source: CRAN
@@ -111,9 +112,13 @@ Version: 0.9.4
 Hash: 5ceb5d83bba44e8e5a764ac6ad32e9fb
 
 Package: packrat
-Source: CRAN
-Version: 0.4.7-1
-Hash: 16ca16d36eb18d1d16113606ecc5c400
+Source: github
+Version: 0.4.7-23
+Hash: 0b0140e9bc72a2b6cc700d68fa0c4d9a
+GithubRepo: packrat
+GithubUsername: rstudio
+GithubRef: master
+GithubSha1: d2a3e316c640cd57094d3f7cf5ad6d26aa69077a
 
 Package: praise
 Source: CRAN
