@@ -3,6 +3,11 @@ PackratVersion: 0.4.7.23
 RVersion: 3.3.1
 Repos: CRAN=http://cran.rstudio.com/
 
+Package: BH
+Source: CRAN
+Version: 1.60.0-2
+Hash: be2967bcff307e561d9ba17faf03205c
+
 Package: R6
 Source: CRAN
 Version: 2.1.2
@@ -168,3 +173,9 @@ Package: withr
 Source: CRAN
 Version: 1.0.2
 Hash: 774eb7be9087cdc24b53b74e5359cfac
+
+Package: xml2
+Source: CRAN
+Version: 1.0.0
+Hash: a55c497b694e044296830eb8ac5c2fee
+Requires: BH, Rcpp

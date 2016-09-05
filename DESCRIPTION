@@ -18,7 +18,6 @@ Suggests:
     devtools,
     crayon,
     R6,
-    testthat,
     xml2
 LazyData: true
 Collate:
@@ -27,3 +26,4 @@ Collate:
     'flypwd.r'
     'utils.r'
     'ini_parse.r'
+RoxygenNote: 5.0.1
