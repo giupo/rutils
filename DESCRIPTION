@@ -16,7 +16,9 @@ Depends:
 License: MIT + file LICENSE
 Suggests:
     devtools,
-    crayon
+    crayon,
+    testthat,
+    xml2
 LazyData: true
 Collate:
     'cluster.r'
