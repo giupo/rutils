@@ -158,7 +158,7 @@ if(require(xml2)) {
     Sys.getenv("WORKSPACE", "."), "tests",
     paste0(Sys.getenv("BUILD_NUMBER", "/tests"), ".xml"))
   print (file.xml)
-  reporter <- JUnitReporter$new(file.xml)
+  reporter <- JunitReporter$new(file.xml)
 } else {
   reporter = "summary"
 }
