@@ -158,7 +158,7 @@ if(!is.null(Sys.getenv("WORKSPACE", NULL))) {
     Sys.getenv("WORKSPACE", "."), "tests",
     paste0(Sys.getenv("BUILD_NUMBER", "/tests"), ".xml"))
   print (file.xml)
-  reporter <- JunitReporter$new(file.xml)
+  reporter <- JunitReporter$new(file=file.xml)
 } else {
   reporter <- "summary"
 }
