@@ -2,3 +2,5 @@
 ^\.Rproj\.user$
 .tar.gz
 \.bumpversion.cfg
+^packrat/
+^\.Rprofile$
