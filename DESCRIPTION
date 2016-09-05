@@ -18,7 +18,8 @@ Suggests:
     devtools,
     crayon,
     testthat,
-    xml2
+    xml2,
+    R6
 LazyData: true
 Collate:
     'cluster.r'
