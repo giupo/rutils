@@ -153,7 +153,6 @@ JunitReporter <- R6::R6Class("JunitReporter", inherit = Reporter,
   )
 )
 
-
 if(Sys.getenv("WORKSPACE", "") == "") {
   file.xml <- file.path(
     Sys.getenv("WORKSPACE", "."), "tests",
