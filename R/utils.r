@@ -94,7 +94,7 @@ tempdir <- function(prefix = NULL) {
 #' Just like basename without the ext
 #'
 #' @name .basename
-#' @rdname utils.Rd
+#' @rdname utils
 #' @author Giuseppe Acito
 #' @param path path
 #' @export

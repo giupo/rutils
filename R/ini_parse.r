@@ -2,7 +2,7 @@
 #'
 #' @name ini_parse
 #' @export
-#' @param filename
+#' @param filename filename to parse
 #' @return a list containing the INI files' informations
 #' @include utils.r
 #' @note full credit to \url{http://goo.gl/V0jwlz}
