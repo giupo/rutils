@@ -1,8 +1,7 @@
-#' @import testthat XML
-NULL
-
 #' base::readLines error reporting sucks.
+#'
 #' @name readLines
+#' @usage(con, n, ok, warn, encoding)
 #' @seealso base::readLines
 #' @param con @see base::readLines
 #' @param n @see base::readLines
@@ -46,6 +45,8 @@ whoami <- function() {
 }
 
 #' Creates a working directory
+#' 
+#' Creates a temp working directory;
 #' The user is in charge of deleting it.
 #'
 #' @name workDir
@@ -84,11 +85,13 @@ workDir <- function(prefix=NULL) {
 
 tempdir <- function(prefix = NULL) {
   workdir <- workDir()
+
   if(is.null(prefix)) {
     path <- file.path(workdir, .randomString())
   } else {
     path <- file.path(workdir, prefix, .randomString())
   }
+  
   suppressWarnings(dir.create(path, recursive=TRUE))
 
   if(!path %in% .tempdirs) {
@@ -161,7 +164,7 @@ slice<-function(x,n) {
     x
   } else {
     N <- length(x);
-    lapply(seq(1,N,n), function(i) x[i:min(i+n-1,N)])
+    lapply(seq(1, N, n), function(i) x[i:min(i+n-1,N)])
   }
 }
 
