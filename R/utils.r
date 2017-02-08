@@ -234,6 +234,7 @@ combine2 <- function(..., prefix = "", sep = "") {
 #' Per ora non fan nulla ma la modifichero' a breve.
 #'
 #' @name notify
+#' @rdname notify
 #' @usage notify(titolo, msg, id)
 #' @param titolo titolo messaggio
 #' @param msg testo del messaggio
@@ -243,16 +244,7 @@ combine2 <- function(..., prefix = "", sep = "") {
 notify <- function(titolo, msg, id=NULL) {
 }
 
-#' Stub per funzione di notify
-#'
-#' Per ora non fan nulla ma la modifichero' a breve.
-#'
-#' @name NOTIFY
-#' @usage NOTIFY(titolo, msg, id)
-#' @param titolo titolo messaggio
-#' @param msg testo del messaggio
-#' @rdname notify-alt
-#' @param id eventuale id (per usi futuri)
+#' @rdname notify
 #' @export
 
 NOTIFY <- notify
