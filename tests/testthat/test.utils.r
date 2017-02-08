@@ -52,25 +52,32 @@ test_that("containsString behaves as expected", {
 test_that("whoami returns a lowerified userid (used in BdI)", {
   expected <- c(letters, as.character(seq(0,9)))
   x <- whoami()
-  tokenize_whoami <-  lapply(seq(1,nchar(x),1), function(i) substr(x, i, i))
+  tokenize_whoami <- lapply(seq(1,nchar(x),1), function(i) substr(x, i, i))
   expect_true(all(tokenize_whoami %in% expected))
 })
 
-if(!is.jenkins()) {
-  test_that("flypwd caches the pwd without calling the backend", {
-    start <- as.numeric(Sys.time())
-    flypwd()
-    mid <- as.numeric(Sys.time())
-    flypwd()
-    end <- as.numeric(Sys.time())
-    expect_true(end-mid <= mid-start, paste(end-mid, mid-start))
-  })
 
-  test_that("flypwd returns a single string and not a bunch of useless strings", {
-    pwd <- flypwd()
-    expect_equal(length(pwd), 1)
-  })
-}
+test_that("flypwd caches the pwd without calling the backend", {
+  expected <- "ioSonoLaLegge!"
+  with_mock(
+    'base::system' = function(...) expected, {
+      start <- as.numeric(Sys.time())
+      x <- flypwd()
+      mid <- as.numeric(Sys.time())
+      flypwd()
+      end <- as.numeric(Sys.time())
+      expect_equal(x, expected)
+      expect_true(end-mid <= mid-start, paste(end-mid, mid-start))
+    })
+})
+
+test_that("flypwd returns a single string and not a bunch of useless strings", {
+  with_mock(
+    'base::system' = function(...) expected, {
+      pwd <- flypwd()
+      expect_equal(length(pwd), 1)
+    })
+})
 
 test_that("ini_parse works as expected", {
     fileini <- file.path(system.file(package="rutils"), "ini/test.ini")
