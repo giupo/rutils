@@ -1,6 +1,6 @@
 PackratFormat: 1.4
 PackratVersion: 0.4.7.23
-RVersion: 3.3.1
+RVersion: 3.3.2
 Repos: CRAN=http://cran.rstudio.com/
 
 Package: BH
@@ -22,17 +22,6 @@ Package: XML
 Source: CRAN
 Version: 3.98-1.4
 Hash: 9f8bc34c3c3d2967c7d25f8945216ffa
-
-Package: brew
-Source: CRAN
-Version: 1.0-6
-Hash: 931f9972deae0f205e1c78a51f33149b
-
-Package: covr
-Source: CRAN
-Version: 2.2.1
-Hash: 0c6dfd5185723035319fe15fec5107f2
-Requires: crayon, httr, jsonlite, memoise, rex, withr
 
 Package: crayon
 Source: CRAN
@@ -90,11 +79,6 @@ Source: CRAN
 Version: 1.0
 Hash: f32817e181c39ede83fdd3e699348b69
 
-Package: lazyeval
-Source: CRAN
-Version: 0.2.0
-Hash: 3d6e7608e65bbf5cb170dab1e3c9ed8b
-
 Package: magrittr
 Source: CRAN
 Version: 1.5
@@ -130,33 +114,10 @@ Source: CRAN
 Version: 1.0.0
 Hash: 77da8f1df873a4b91e5c4a68fe2fb1b6
 
-Package: rex
-Source: CRAN
-Version: 1.1.1
-Hash: 69e208c6283398d235e507a658ba8079
-Requires: lazyeval, magrittr
-
-Package: roxygen2
-Source: CRAN
-Version: 5.0.1
-Hash: 77e2e933d3709300a251c7ef9cef82fc
-Requires: Rcpp, brew, digest, stringi, stringr
-
 Package: rstudioapi
 Source: CRAN
 Version: 0.6
 Hash: fd256f8bfb9a64cc35f98b0decb1a79f
-
-Package: stringi
-Source: CRAN
-Version: 1.1.1
-Hash: 48f2afc5dfecb65ba32a87d38b3533ff
-
-Package: stringr
-Source: CRAN
-Version: 1.1.0
-Hash: 4d21d0063b37a17ea18eaec6acd29bf3
-Requires: magrittr, stringi
 
 Package: testthat
 Source: CRAN
