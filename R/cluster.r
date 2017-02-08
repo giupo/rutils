@@ -7,15 +7,17 @@
 #'
 #' @name Cluster
 #' @rdname Cluster
+#' @aliases Cluster-class
+#' @title Cluster wrapper
 #' @field ncores stores the number of cores used for this cluster
 #' @field cluster the internal cluster
 #' @field working a logical status to fix some erratic behaviour of the internal cluster
+#' @field active a logical status (TRUE if Cluster is active)
 #' @importFrom parallel makeForkCluster clusterExport detectCores stopCluster parLapply
 #' @importFrom foreach foreach
 #' @importFrom doParallel registerDoParallel
 #' @importFrom methods new
 #' @exportClass Cluster
-#' @export Cluster
 
 Cluster <- setRefClass(  
   "Cluster",

@@ -3,7 +3,6 @@
 export(.basename)
 export(.containsString)
 export(.randomString)
-export(Cluster)
 export(NOTIFY)
 export(combine2)
 export(flypwd)

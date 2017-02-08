@@ -2,6 +2,9 @@
 #'
 #' @name flypwd
 #' @export
+#' @usage flypwd(service, clean)
+#' @param service service name
+#' @param clean flush credentials stored in session
 #' @author Giuseppe Acito
 #' @return the current user's password
 #' @include options.r

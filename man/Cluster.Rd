@@ -3,12 +3,15 @@
 \docType{class}
 \name{Cluster}
 \alias{Cluster}
-\title{A Cluster proxy to internal cluster functions}
+\alias{Cluster-class}
+\title{Cluster wrapper}
 \description{
-This proxy has been made to be less error prone and a little easier
-to emply clusters in computations
+A Cluster proxy to internal cluster functions
 }
 \details{
+This proxy has been made to be less error prone and a little easier
+to emply clusters in computations
+
 no value added, just a small API
 }
 \section{Fields}{
@@ -19,6 +22,8 @@ no value added, just a small API
 \item{\code{cluster}}{the internal cluster}
 
 \item{\code{working}}{a logical status to fix some erratic behaviour of the internal cluster}
+
+\item{\code{active}}{a logical status (TRUE if Cluster is active)}
 }}
 
 \section{Methods}{

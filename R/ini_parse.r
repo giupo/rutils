@@ -1,3 +1,6 @@
+# Horrible hack
+globalVariables(c("V1", "V2"))
+
 #' Parses a file INI
 #'
 #' @name ini_parse
@@ -16,16 +19,18 @@ ini_parse <- function(filename) {
   }
 
   connection <- file(filename)
+  on.exit(close(connection))
+  
+  lines <- readLines(connection)
+  lines <- chartr("[]", "==", lines)  # change section headers
+  textcon <- textConnection(lines)
 
-  Lines <- readLines(connection)
-
-  close(connection)
-
-  Lines <- chartr("[]", "==", Lines)  # change section headers
-
-  connection <- textConnection(Lines)
-  d <- read.table(connection, as.is = TRUE, sep = "=", fill = TRUE)
-  close(connection)
+  on.exit({
+    close(textcon)
+    close(connection)
+  })
+  
+  d <- read.table(textcon, as.is = TRUE, sep = "=", fill = TRUE)
 
   L <- d$V1 == ""                    # location of section breaks
   d <- subset(transform(d, V3 = V2[which(L)[cumsum(L)]])[1:3],

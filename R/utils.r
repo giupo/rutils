@@ -4,6 +4,11 @@ NULL
 #' base::readLines error reporting sucks.
 #' @name readLines
 #' @seealso base::readLines
+#' @param con @see base::readLines
+#' @param n @see base::readLines
+#' @param ok @see base::readLines
+#' @param warn @see base::readLines
+#' @param encoding @see base::readLines
 #' @export
 
 readLines <- function(con=stdin(), n=-1L, ok=TRUE,
@@ -44,13 +49,15 @@ whoami <- function() {
 #' The user is in charge of deleting it.
 #'
 #' @name workDir
+#' @usage workDir(prefix)
+#' @param prefix prefix to prepend to the directory name (default = NULL)
 #' @export
 #' @author Giuseppe Acito
 #' @return the path of the newly created workdir
 
 workDir <- function(prefix=NULL) {
   if(is.null(prefix)) {
-    prefix <- ifelse(.Platform$OS.type=="unix","/tmp/work", "C:\\temp")
+    prefix <- ifelse(is.windows(), "C:\\temp", "/tmp/work")
   }
   workdir <- file.path(prefix, whoami())
   suppressWarnings(dir.create(workdir, recursive=TRUE))
@@ -112,7 +119,11 @@ tempdir <- function(prefix = NULL) {
 #' genera stringhe random
 #'
 #' @name .randomString
+#' @usage .randomString(length, prefix)
+#' @param length lunghezza della stringa (default = 8)
+#' @param prefix evantuale prefisso (default = "")
 #' @rdname randomString
+#' @return stringa con caratteri random di lunghezza = `length` ed un prefisso = `prefix`
 #' @export
 
 .randomString <- function(length=8, prefix="") {
@@ -127,6 +138,10 @@ tempdir <- function(prefix = NULL) {
 #'
 #' @name .containsString
 #' @rdname constainsString
+#' @usage .containsString(stringa, substring)
+#' @param stringa stringa da controllare
+#' @param substring sottoscringa da cercare in `stringa`
+#' @return -1 se non trova `substring` in `stringa` altrimenti la posizione 
 #' @export
 
 .containsString <- function(stringa, substring)

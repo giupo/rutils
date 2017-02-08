@@ -37,6 +37,8 @@ list:
 	@echo $(R_FILES)
 	@echo "Source files:"
 	@echo $(SRC_FILES)
+test:
+	Rscript -e 'devtools::test()'
 autotest:
 	Rscript autotest.r
 so:

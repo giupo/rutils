@@ -4,7 +4,12 @@
 \alias{flypwd}
 \title{Returns the password stored by flypwd}
 \usage{
-flypwd(service = NULL, clean = FALSE)
+flypwd(service, clean)
+}
+\arguments{
+\item{service}{service name}
+
+\item{clean}{flush credentials stored in session}
 }
 \value{
 the current user's password

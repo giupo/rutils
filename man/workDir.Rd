@@ -5,7 +5,10 @@
 \title{Creates a working directory
 The user is in charge of deleting it.}
 \usage{
-workDir(prefix = NULL)
+workDir(prefix)
+}
+\arguments{
+\item{prefix}{prefix to prepend to the directory name (default = NULL)}
 }
 \value{
 the path of the newly created workdir
