@@ -27,4 +27,4 @@ Collate:
     'flypwd.r'
     'utils.r'
     'ini_parse.r'
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

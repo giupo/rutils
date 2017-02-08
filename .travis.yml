@@ -20,6 +20,10 @@ repos:
 before_install:
   - sudo apt-get -qq update
   - sudo apt-get install --force-yes libxml2-dev tk8.5
+  # for tcl/tk support on travis: https://github.com/travis-ci/travis-ci/issues/6987
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+
 
 r_github_packages:
   - jimhester/covr

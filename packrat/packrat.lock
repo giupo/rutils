@@ -187,6 +187,6 @@ Hash: 774eb7be9087cdc24b53b74e5359cfac
 
 Package: xml2
 Source: CRAN
-Version: 1.0.0
-Hash: a55c497b694e044296830eb8ac5c2fee
+Version: 1.1.1
+Hash: 383085cb745528742fcfec4037776fbc
 Requires: BH, Rcpp

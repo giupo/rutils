@@ -20,4 +20,3 @@ Slides the \code{x} object in \code{n} parts
 \author{
 Giuseppe Acito
 }
-

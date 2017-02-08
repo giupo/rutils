@@ -17,4 +17,3 @@ The user is in charge of deleting it.
 \author{
 Giuseppe Acito
 }
-

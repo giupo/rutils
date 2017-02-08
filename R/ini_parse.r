@@ -5,6 +5,8 @@
 #' @param filename filename to parse
 #' @return a list containing the INI files' informations
 #' @include utils.r
+#' @importFrom methods new
+#' @importFrom utils read.table
 #' @note full credit to \url{http://goo.gl/V0jwlz}
 
 ini_parse <- function(filename) {

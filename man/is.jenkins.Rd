@@ -15,4 +15,3 @@ internal function to check if the runtime environment is jenkins.
 \details{
 more like an hack.
 }
-

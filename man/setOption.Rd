@@ -14,4 +14,3 @@ setOption(key, value)
 \description{
 I'm gonna let parametrize the key for options
 }
-

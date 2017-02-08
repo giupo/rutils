@@ -13,6 +13,7 @@
 #' @importFrom parallel makeForkCluster clusterExport detectCores stopCluster parLapply
 #' @importFrom foreach foreach
 #' @importFrom doParallel registerDoParallel
+#' @importFrom methods new
 #' @exportClass Cluster
 #' @export Cluster
 

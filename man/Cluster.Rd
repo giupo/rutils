@@ -20,6 +20,7 @@ no value added, just a small API
 
 \item{\code{working}}{a logical status to fix some erratic behaviour of the internal cluster}
 }}
+
 \section{Methods}{
 
 \describe{
