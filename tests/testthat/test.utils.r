@@ -69,12 +69,42 @@ test_that("flypwd caches the pwd without calling the backend", {
       expect_equal(x, expected)
       expect_true(end-mid <= mid-start, paste(end-mid, mid-start))
     })
+  
+  with_mock(
+    'base::system' = function(...) c("plainjunk", expected), {
+      x <- flypwd(clean=T)
+      expect_equal(x, expected)
+    })
+
+  with_mock(
+    'base::system' = function(...) "cambiata", {
+      expect_equal(flypwd(), expected)
+      expect_equal(flypwd(clean=TRUE), "cambiata")
+    })
+
+  ## damn side effects
+  with_mock(
+    'base::system' = function(...) expected, {
+      expect_true(!flypwd() == expected)
+      expect_equal(flypwd(clean=TRUE), expected)
+    }) 
+})
+
+test_that("flypwd: if i get a warn from system, flypwd raises an error", {
+  # tolgo contenuti cache
+  expected <- "ioSonoLaLegge!"
+  # non penso possiamo testartlo per come testthat gestisce i warning
+  # with_mock(
+  #  'base::system' = function(...) { warning("ciao"); expected }, {
+  #    flypwd(clean=T)
+  #  }) 
 })
 
 test_that("flypwd returns a single string and not a bunch of useless strings", {
+  expected <- "ioSonoLaLegge!"
   with_mock(
     'base::system' = function(...) expected, {
-      pwd <- flypwd()
+      pwd <- flypwd(clean=T)
       expect_equal(length(pwd), 1)
     })
 })

@@ -43,3 +43,9 @@ autotest:
 	Rscript autotest.r
 so:
 	Rscript --vanilla -e 'devtools::compile_dll()'
+
+coverage:
+	Rscript -e 'covr::package_coverage(line_exclusions=file.path("packrat", list.files(path="packrat", recursive=TRUE)))'
+
+codecov:
+	Rscript -e 'covr::codecov(line_exclusions=file.path("packrat", list.files(path="packrat", recursive=TRUE)))'

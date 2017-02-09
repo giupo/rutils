@@ -29,6 +29,8 @@ flypwd <- function(service=NULL, clean=FALSE) {
     system(cmd, intern=TRUE)
   }, warning=function(warn) {
     stop(warn)
+  }, error=function(cond) {
+    stop(cond)
   })
 
   if(length(pwd) > 1) {
