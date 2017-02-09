@@ -128,3 +128,11 @@ test_that("ini_parse throws an error with filename in it", {
   fileini <- "/i/don/t/exist"
   expect_error(ini_parse(fileini), fileini)
 })
+
+test_that("readLines raises errors", {
+  with_mock(
+    'base::readLines' = function(...) stop("errore"), {
+      expect_error(readLines(con="cippa"))
+      expect_error(readLines(con=1))
+    })
+})
