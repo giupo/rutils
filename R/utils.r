@@ -108,15 +108,11 @@ tempdir <- function(prefix = NULL) {
 #' @author Giuseppe Acito
 #' @param path path
 #' @export
+#' @importFrom tools file_path_sans_ext
 #' @return just the name of the path
 
 .basename <- function(path) {
-  inizio <- regexpr("/[^/]*$", path)+1
-  fine <- regexpr("\\.[^\\.]*$", path)-1
-  if(fine<inizio || inizio == fine) {
-    stop(path, ": malformed path, or I'm a dork")
-  }
-  substr(path, inizio, fine)
+  file_path_sans_ext(basename(path))
 }
 
 #' genera stringhe random

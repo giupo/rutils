@@ -12,7 +12,8 @@ Depends:
     doParallel,
     foreach,
     XML,
-    testthat
+    testthat,
+    tools
 License: MIT + file LICENSE
 Suggests:
     devtools,
