@@ -136,3 +136,38 @@ test_that("readLines raises errors", {
       expect_error(readLines(con=1))
     })
 })
+
+
+test_that("If there's username in the system env, return it", {
+  with_mock(
+    'base::Sys.getenv' = function(x, ... ) {
+      if(x=="username") {
+        "pluto"
+      } else {
+        base::Sys.getenv(x, ...)
+      }
+    }, {
+      expect_equal(whoami(), "pluto")
+    })
+})
+
+test_that("tempdir with prefix returns a dir with prefix", {
+  with_mock(
+    'base::dir.create' = function(...) {}, {
+      tmp <- rutils::tempdir(prefix="ciccio")
+      expect_true(.containsString(tmp, "ciccio"))
+    })
+})
+
+test_that("unfold behaves as expected", {
+  data <- list(a=1,b=2)
+  unfold(data)
+  expect_equal(a, 1)
+  expect_equal(b, 2)
+})
+
+test_that("slice works as expected", {
+  data <- list(a=1,b=1,c=1,d=1)
+  expect_equal(slice(data, 0), data)
+  expect_equal(slice(data, 2), list(list(a=1,b=1), list(c=1,d=1)))
+})
