@@ -22,8 +22,7 @@ Suggests:
     xml2,
     roxygen2
 LazyData: true
-Collate:
-    'cluster.r'
+Collate: 
     'options.r'
     'flypwd.r'
     'utils.r'
