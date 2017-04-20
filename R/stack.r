@@ -31,15 +31,12 @@ Stack <- R6Class(
     
     length = function() length(private$stack),
 
-    show = function() {
+    show = function(sep="\n") {
       if (self$empty()) {
         cat("Empty Stack\n")
         return(invisible(NULL))
       }
-      for (item in private$stack) {
-        cat(item)
-        cat("\n")
-      }
+      cat(paste0(private$stack, collapse=sep))
       invisible(NULL)
     }
   ),
