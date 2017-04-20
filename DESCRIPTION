@@ -13,7 +13,8 @@ Depends:
     foreach,
     XML,
     testthat,
-    tools
+    tools,
+    R6
 License: MIT + file LICENSE
 Suggests:
     devtools,
@@ -22,9 +23,10 @@ Suggests:
     xml2,
     roxygen2
 LazyData: true
-Collate: 
+Collate:
     'options.r'
     'flypwd.r'
     'utils.r'
     'ini_parse.r'
-RoxygenNote: 6.0.1
+    'stack.r'
+RoxygenNote: 5.0.1

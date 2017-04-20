@@ -2,6 +2,7 @@
 library(testthat)
 library(devtools)
 library(methods)
+library(R6)
 # options(env="test")
 options(GCLUSTER=F)
 load_all()

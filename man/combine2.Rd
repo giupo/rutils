@@ -22,3 +22,4 @@ a = c("A", "B")
           combine2(a,b)
           # ritorna "A1" "B1" "A2" "B2" "A3" "B3"
 }
+
