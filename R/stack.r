@@ -29,7 +29,18 @@ Stack <- R6Class(
     
     empty = function() self$length() == 0,
     
-    length = function() length(private$stack)
+    length = function() length(private$stack),
+
+    show = function() {
+      if (self$empty()) {
+        cat("Empty Stack\n")
+        return()
+      }
+      for (item in private$stack) {
+        cat(item)
+        cat("\n")
+      }
+    }
   ),
 
   private = list(
@@ -37,6 +48,14 @@ Stack <- R6Class(
   ))
 
 
+
+#' Returns `TRUE` if `x` is a Stack
+#'
+#' @name is.Stack
+#' @usage is.Stack(x)
+#' @param x object to check
+#' @return `TRUE` if x is a Stack; `FALSE` otherwise
+#' @export
 
 is.Stack <- function(x) {
   inherits(x, "Stack")
