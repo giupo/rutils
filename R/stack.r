@@ -1,4 +1,7 @@
 
+#' @export
+#' @importFrom R6 R6Class
+
 Stack <- R6Class(
   "Stack",
   public = list(
