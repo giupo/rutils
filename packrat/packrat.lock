@@ -1,6 +1,6 @@
 PackratFormat: 1.4
 PackratVersion: 0.4.7.23
-RVersion: 3.3.2
+RVersion: 3.2.3
 Repos: CRAN=http://cran.rstudio.com/
 
 Package: BH
@@ -10,8 +10,8 @@ Hash: be2967bcff307e561d9ba17faf03205c
 
 Package: R6
 Source: CRAN
-Version: 2.1.2
-Hash: c515e41c73294952cbb33ee1c1be5a2d
+Version: 2.2.2
+Hash: b2366cd9d2f3851a5704b4e192b985c2
 
 Package: Rcpp
 Source: CRAN
@@ -60,8 +60,8 @@ Hash: 576a9d297a567d6a5ebd164ca5221590
 
 Package: curl
 Source: CRAN
-Version: 1.2
-Hash: 11de7924273ee61a95c7a157a572bc8a
+Version: 3.1
+Hash: 877149b42d479b93ab15d5cef46c0f1b
 
 Package: desc
 Source: CRAN
@@ -71,15 +71,15 @@ Requires: R6, assertthat, crayon, rprojroot
 
 Package: devtools
 Source: CRAN
-Version: 1.12.0
-Hash: bbad95109ae75cbb14099281cda43af2
+Version: 1.13.4
+Hash: 80a77b22f641002c7ce0343baeaee300
 Requires: digest, git2r, httr, jsonlite, memoise, rstudioapi, whisker,
     withr
 
 Package: digest
 Source: CRAN
-Version: 0.6.10
-Hash: 87165608ca8aeb0958835c3c5b52b6b7
+Version: 0.6.13
+Hash: cfce0bc7ed5ba0cdc47182698fae1d24
 
 Package: doParallel
 Source: CRAN
@@ -95,13 +95,13 @@ Requires: iterators
 
 Package: git2r
 Source: CRAN
-Version: 0.15.0
-Hash: 92d5a9f3cba5e146b92a76dabbc29fbb
+Version: 0.21.0
+Hash: 64747922e287be74e8e8b46c107fd3ef
 
 Package: httr
 Source: CRAN
-Version: 1.2.1
-Hash: 7de1f8f760441881804af7c1ff324340
+Version: 1.3.1
+Hash: 2d32e01e53d532c812052e27a1021441
 Requires: R6, curl, jsonlite, mime, openssl
 
 Package: iterators
@@ -111,8 +111,8 @@ Hash: 488b93c2a4166db0d15f1e8d882cb1d4
 
 Package: jsonlite
 Source: CRAN
-Version: 1.2
-Hash: 3a193a612cae6814719ed523f7e7cf44
+Version: 1.5
+Hash: 9c51936d8dd00b2f1d4fe9d10499694c
 
 Package: lazyeval
 Source: CRAN
@@ -126,8 +126,8 @@ Hash: bdc4d48c3135e8f3b399536ddf160df4
 
 Package: memoise
 Source: CRAN
-Version: 1.0.0
-Hash: 56e7087c3559eb7ba72a9afb349bf896
+Version: 1.1.0
+Hash: 410fcd334bc626db100237cc1370f2e9
 Requires: digest
 
 Package: mime
@@ -137,8 +137,8 @@ Hash: 463550cf44fb6f0a2359368f42eebe62
 
 Package: openssl
 Source: CRAN
-Version: 0.9.4
-Hash: 5ceb5d83bba44e8e5a764ac6ad32e9fb
+Version: 0.9.9
+Hash: 3858537ac10388a5db1687450908f257
 
 Package: packrat
 Source: github
@@ -175,8 +175,8 @@ Requires: backports
 
 Package: rstudioapi
 Source: CRAN
-Version: 0.6
-Hash: fd256f8bfb9a64cc35f98b0decb1a79f
+Version: 0.7
+Hash: e2ebaff8160aff3e6b32e6e78a693c2d
 
 Package: stringi
 Source: CRAN
@@ -202,8 +202,8 @@ Hash: 803d662762e532705c2c066a82d066e7
 
 Package: withr
 Source: CRAN
-Version: 1.0.2
-Hash: 774eb7be9087cdc24b53b74e5359cfac
+Version: 2.1.1
+Hash: a86856ae0b4a7c3daf9a3ef0097a403b
 
 Package: xml2
 Source: CRAN
