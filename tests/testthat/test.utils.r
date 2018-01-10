@@ -59,41 +59,39 @@ test_that("whoami returns a lowerified userid (used in BdI)", {
 
 test_that("flypwd caches the pwd without calling the backend", {
   expected <- "ioSonoLaLegge!"
-  with_mock(
-    'base::system' = function(...) expected, {
-      start <- as.numeric(Sys.time())
-      x <- flypwd()
-      mid <- as.numeric(Sys.time())
-      flypwd()
-      end <- as.numeric(Sys.time())
-      expect_equal(x, expected)
-      expect_true(end-mid <= mid-start, paste(end-mid, mid-start))
-    })
+
+  if(!require(mockery)) skip("mockery needed")
+
+  stub(flypwd, 'system', function(...) expected)
   
-  with_mock(
-    'base::system' = function(...) c("plainjunk", expected), {
-      x <- flypwd(clean=T)
-      expect_equal(x, expected)
-    })
+  start <- as.numeric(Sys.time())
+  x <- flypwd()
+  mid <- as.numeric(Sys.time())
+  flypwd()
+  end <- as.numeric(Sys.time())
+  expect_equal(x, expected)
+  expect_true(end-mid <= mid-start, paste(end-mid, mid-start))
 
-  with_mock(
-    'base::system' = function(...) "cambiata", {
-      expect_equal(flypwd(), expected)
-      expect_equal(flypwd(clean=TRUE), "cambiata")
-    })
+  stub(flypwd, 'system', function(...) c("plainjunk", expected))
+  x <- flypwd(clean=T)
+  expect_equal(x, expected)
+  
 
+  stub(flypwd, 'system', function(...) "cambiata")
+  expect_equal(flypwd(), expected)
+  expect_equal(flypwd(clean=TRUE), "cambiata")
+
+  
   ## damn side effects
-  with_mock(
-    'base::system' = function(...) expected, {
-      expect_true(!flypwd() == expected)
-      expect_equal(flypwd(clean=TRUE), expected)
-    }) 
+  stub(flypwd, 'system', function(...) expected)
+  expect_true(!flypwd() == expected)
+  expect_equal(flypwd(clean=TRUE), expected)
 })
 
 test_that("flypwd: if i get a warn from system, flypwd raises an error", {
   # tolgo contenuti cache
-  expected <- "ioSonoLaLegge!"
-  # non penso possiamo testartlo per come testthat gestisce i warning
+  # expected <- "ioSonoLaLegge!"
+  skip("non penso possiamo testartlo per come testthat gestisce i warning")
   # with_mock(
   #  'base::system' = function(...) { warning("ciao"); expected }, {
   #    flypwd(clean=T)
@@ -101,12 +99,11 @@ test_that("flypwd: if i get a warn from system, flypwd raises an error", {
 })
 
 test_that("flypwd returns a single string and not a bunch of useless strings", {
+  if(!require(mockery)) skip("mockery needed") 
   expected <- "ioSonoLaLegge!"
-  with_mock(
-    'base::system' = function(...) expected, {
-      pwd <- flypwd(clean=T)
-      expect_equal(length(pwd), 1)
-    })
+  stub(flypwd, 'system', function(...) expected)
+  pwd <- flypwd(clean=T)
+  expect_equal(length(pwd), 1)
 })
 
 test_that("ini_parse works as expected", {
@@ -129,34 +126,25 @@ test_that("ini_parse throws an error with filename in it", {
   expect_error(ini_parse(fileini), fileini)
 })
 
-test_that("readLines raises errors", {
-  with_mock(
-    'base::readLines' = function(...) stop("errore"), {
-      expect_error(readLines(con="cippa"))
-      expect_error(readLines(con=1))
-    })
-})
-
-
 test_that("If there's username in the system env, return it", {
-  with_mock(
-    'base::Sys.getenv' = function(x, ... ) {
-      if(x=="username") {
-        "pluto"
-      } else {
-        base::Sys.getenv(x, ...)
-      }
-    }, {
-      expect_equal(whoami(), "pluto")
-    })
+  if(!require(mockery)) skip("mockery needed")
+
+  stub(whoami, 'Sys.getenv', function(x, ... ) {
+    if(x=="username") {
+      "pluto"
+    } else {
+      base::Sys.getenv(x, ...)
+    }
+  })
+  
+  expect_equal(whoami(), "pluto")
 })
 
 test_that("tempdir with prefix returns a dir with prefix", {
-  with_mock(
-    'base::dir.create' = function(...) {}, {
-      tmp <- rutils::tempdir(prefix="ciccio")
-      expect_true(.containsString(tmp, "ciccio"))
-    })
+  if(!require(mockery)) skip("mockery needed") 
+  stub(.containsString, 'dir.create', function(...) {})
+  tmp <- tempdir(prefix="ciccio")
+  expect_true(.containsString(tmp, "ciccio"))
 })
 
 test_that("unfold behaves as expected", {

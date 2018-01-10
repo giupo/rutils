@@ -1,6 +1,6 @@
 PackratFormat: 1.4
 PackratVersion: 0.4.7.23
-RVersion: 3.2.3
+RVersion: 3.3.3
 Repos: CRAN=http://cran.rstudio.com/
 
 Package: BH
@@ -140,6 +140,12 @@ Package: mime
 Source: CRAN
 Version: 0.5
 Hash: 463550cf44fb6f0a2359368f42eebe62
+
+Package: mockery
+Source: CRAN
+Version: 0.4.1
+Hash: bce6846bd2ed0a41b7cba564bd816dac
+Requires: testthat
 
 Package: openssl
 Source: CRAN
