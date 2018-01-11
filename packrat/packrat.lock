@@ -207,14 +207,10 @@ Hash: 4d21d0063b37a17ea18eaec6acd29bf3
 Requires: magrittr, stringi
 
 Package: testthat
-Source: github
-Version: 2.0.0.9000
-Hash: a4dec4ffd581a70c719be6f4c0365a6c
+Source: CRAN
+Version: 2.0.0
+Hash: 537114b476376c5773bf3c557f5bbd19
 Requires: R6, cli, crayon, digest, magrittr, praise, rlang, withr
-GithubRepo: testthat
-GithubUsername: r-lib
-GithubRef: master
-GithubSha1: eda2d54a78e75e76f5544b78a14b50e88d926689
 
 Package: whisker
 Source: CRAN
