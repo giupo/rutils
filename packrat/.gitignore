@@ -1,2 +1,4 @@
-init.R
-packrat.opts
+!init.R
+!packrat.opts
+!packrat.lock
+*
