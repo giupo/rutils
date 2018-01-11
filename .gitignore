@@ -21,3 +21,4 @@ tests/*.xml
 .Rproj.user
 *.o
 *.so
+packrat/lib*/
