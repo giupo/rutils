@@ -12,7 +12,6 @@
 .[#]*
 build/*
 dist/*
-test/mytests.R
 *.out
 test_environment/*
 *.log
@@ -20,6 +19,5 @@ test_environment/*
 core.*
 tests/*.xml
 .Rproj.user
-packrat/lib*/
 *.o
 *.so
