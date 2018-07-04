@@ -6,7 +6,8 @@ Authors@R: person("Giuseppe", "Acito", email = "giuseppe.acito@gmail.com", role
 Description: This is a bunch of utils I keep spreading in different packages: I
     decided to collect them under a dedicated package.
 Depends:
-    R (>= 3.0.0),
+    R (>= 3.3.0)
+Imports:
     methods,
     parallel,
     doParallel,
