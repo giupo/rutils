@@ -23,4 +23,3 @@ base::readLines error reporting sucks.
 \seealso{
 base::readLines
 }
-

@@ -12,4 +12,3 @@ is.darwin()
 \description{
 Checks if system is OSX
 }
-

@@ -15,4 +15,3 @@ is.Stack(x)
 \description{
 Returns `TRUE` if `x` is a Stack
 }
-
