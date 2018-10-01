@@ -37,5 +37,5 @@ flypwd <- function(service=NULL, clean=FALSE) {
     pwd <- pwd[-1]
   }
   setOption(key, pwd)
-  pwd
+  invisible(pwd)
 }
