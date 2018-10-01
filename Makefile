@@ -22,7 +22,7 @@ build: $(PKG_NAME)_$(PKG_VERSION).tar.gz
 	R CMD INSTALL --build $(PKG_NAME)_$(PKG_VERSION).tar.gz
  
 install: $(PKG_NAME)_$(PKG_VERSION).tar.gz
-	R CMD INSTALL $(PKG_NAME)_$(PKG_VERSION).tar.gz
+	R --vanilla CMD INSTALL $(PKG_NAME)_$(PKG_VERSION).tar.gz
  
 NAMESPACE: $(R_FILES)
 	Rscript -e "devtools::document()"
