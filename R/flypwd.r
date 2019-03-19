@@ -12,8 +12,9 @@
 flypwd <- function(service=NULL, clean=FALSE) {
   service <- ifelse(is.null(service), "default", service)
   key <- paste("flypwd", service, sep="_")
-  flypwd_cmd <- tryCatch(file.path(system.file("flypwd", package="rutils", mustWork=TRUE)),
-    error = function(cond) "flypwd -p")
+#  flypwd_cmd <- tryCatch(file.path(system.file("flypwd", package="rutils", mustWork=TRUE)),
+  #    error = function(cond) "flypwd -p")
+  flypwd_cmd <- "flypwd -p"
   cmd <- paste(flypwd_cmd, service)
   if(clean) {
     setOption(key, NULL)
