@@ -12,7 +12,6 @@ Imports:
     parallel,
     doParallel,
     foreach,
-    XML,
     testthat,
     tools,
     R6
