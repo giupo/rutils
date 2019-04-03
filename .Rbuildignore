@@ -17,3 +17,4 @@ scripts
 ^packrat/
 ^\.Rprofile$
 ^\.travis.yml$
+^packrat/
