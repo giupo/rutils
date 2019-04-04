@@ -14,7 +14,7 @@ rcf.Rcheck/*
 \.tar\.gz$
 scripts
 ^lib_mgt.r
-^packrat/
+packrat
 ^\.Rprofile$
 ^\.travis.yml$
 ^packrat/
