@@ -64,13 +64,6 @@ test_that("flypwd caches the pwd without calling the backend", {
 
   stub(flypwd, 'system', function(...) expected)
   
-  start <- as.numeric(Sys.time())
-  x <- flypwd()
-  mid <- as.numeric(Sys.time())
-  flypwd()
-  end <- as.numeric(Sys.time())
-  expect_equal(x, expected)
-  expect_true(end-mid <= mid-start, paste(end-mid, mid-start))
 
   stub(flypwd, 'system', function(...) c("plainjunk", expected))
   x <- flypwd(clean=T)
