@@ -4,8 +4,8 @@ language: r
 
 cache:
   directories:
-    - $TRAVIS_BUILD_DIR/packrat/src
-    - $TRAVIS_BUILD_DIR/packrat/lib
+    - $TRAVIS_BUILD_DIR/renv/library
+    - $TRAVIS_BUILD_DIR/renv/staging
   packages: true
   
 sudo: false
@@ -28,7 +28,7 @@ r_github_packages:
   - rstudio/packrat
 
 after_success:
-  - Rscript -e 'packrat::restore()'
+  - Rscript -e 'renv::restore()'
   - Rscript -e 'devtools::test()'
-  - Rscript -e 'covr::codecov(line.exclusions=file.path("packrat", list.files(path="packrat", recursive=T)))'
+  - Rscript -e 'covr::codecov(line.exclusions=file.path("renv", list.files(path="packrat", recursive=T)))'
   

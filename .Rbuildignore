@@ -17,3 +17,5 @@ scripts
 ^packrat/
 ^\.Rprofile$
 ^\.travis.yml$
+^renv$
+^renv\.lock$

@@ -1,5 +1,5 @@
 # Makefile for generating R packages.
-# 2011 Andrew Redd
+	# 2011 Andrew Redd
 # 2014 Giuseppe Acito
 
 PKG_VERSION=$(shell grep -i ^version DESCRIPTION | cut -d : -d \  -f 2)
@@ -45,7 +45,11 @@ so:
 	Rscript --vanilla -e 'devtools::compile_dll()'
 
 coverage:
-	Rscript -e 'covr::package_coverage(line_exclusions=file.path("packrat", list.files(path="packrat", recursive=TRUE)))'
+	Rscript -e 'covr::package_coverage(line_exclusions=file.path("renv", list.files(path="renv", recursive=TRUE)))'
 
 codecov:
-	Rscript -e 'covr::codecov(line_exclusions=file.path("packrat", list.files(path="packrat", recursive=TRUE)))'
+	Rscript -e 'covr::codecov(line_exclusions=file.path("renv", list.files(path="packrat", recursive=TRUE)))'
+
+restore:
+	R -e 'renv::restore()'
+
