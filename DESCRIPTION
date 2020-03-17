@@ -29,4 +29,5 @@ Collate:
     'utils.r'
     'ini_parse.r'
     'stack.r'
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
+Encoding: UTF-8
