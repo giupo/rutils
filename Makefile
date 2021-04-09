@@ -53,3 +53,5 @@ codecov:
 restore:
 	R -e 'renv::restore()'
 
+CHANGELOG.md:
+	gitchangelog | grep -v "git-svn-id" > CHANGELOG.md
