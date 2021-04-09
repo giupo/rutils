@@ -247,3 +247,21 @@ notify <- function(titolo, msg, id=NULL) {
 #' @export
 
 NOTIFY <- notify
+
+
+#' ifelse come dio comanda
+#' 
+#' Questo `ifelse0`, a differenze di `ifelse` non modifica
+#' lo shape dell'oggetto ritornato. (il che, oggettivamente
+#' l'e' una bischerata)
+#' 
+#' @name ifelse
+#' @usage ifelse(test, a, b)
+#' @param test un predicato che deve restituire `TRUE/FALSE`
+#' @param a l'oggetto ritornato se `test` e' `TRUE`
+#' @param b l'oggetto ritornato se `test` e' `FALSE`
+#' @export
+
+ifelse <- function(test, a, b) {
+  if (test) a else b
+}

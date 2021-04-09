@@ -57,48 +57,6 @@ test_that("whoami returns a lowerified userid (used in BdI)", {
 })
 
 
-test_that("flypwd caches the pwd without calling the backend", {
-  expected <- "ioSonoLaLegge!"
-
-  if(!require(mockery)) skip("mockery needed")
-
-  stub(flypwd, 'system', function(...) expected)
-  
-
-  stub(flypwd, 'system', function(...) c("plainjunk", expected))
-  x <- flypwd(clean=T)
-  expect_equal(x, expected)
-  
-
-  stub(flypwd, 'system', function(...) "cambiata")
-  expect_equal(flypwd(), expected)
-  expect_equal(flypwd(clean=TRUE), "cambiata")
-
-  
-  ## damn side effects
-  stub(flypwd, 'system', function(...) expected)
-  expect_true(!flypwd() == expected)
-  expect_equal(flypwd(clean=TRUE), expected)
-})
-
-test_that("flypwd: if i get a warn from system, flypwd raises an error", {
-  # tolgo contenuti cache
-  # expected <- "ioSonoLaLegge!"
-  skip("non penso possiamo testartlo per come testthat gestisce i warning")
-  # with_mock(
-  #  'base::system' = function(...) { warning("ciao"); expected }, {
-  #    flypwd(clean=T)
-  #  }) 
-})
-
-test_that("flypwd returns a single string and not a bunch of useless strings", {
-  if(!require(mockery)) skip("mockery needed") 
-  expected <- "ioSonoLaLegge!"
-  stub(flypwd, 'system', function(...) expected)
-  pwd <- flypwd(clean=T)
-  expect_equal(length(pwd), 1)
-})
-
 test_that("ini_parse works as expected", {
     fileini <- file.path(system.file(package="rutils"), "ini/test.ini")
     ini <- ini_parse(fileini)
@@ -151,4 +109,19 @@ test_that("slice works as expected", {
   data <- list(a=1,b=1,c=1,d=1)
   expect_equal(slice(data, 0), data)
   expect_equal(slice(data, 2), list(list(a=1,b=1), list(c=1,d=1)))
+})
+
+
+
+test_that("rutils::ifelse doesn't changes the shape of objects", {
+  x <- ts(c(1, 2, 3))
+  y <- ts(c(3, 2, 1))
+
+  expect_equal(ifelse(TRUE, x, y), x)
+  expect_equal(ifelse(FALSE, x, y), y)
+
+  expect_true(is.ts(ifelse(TRUE, x, y)))
+  expect_true(is.ts(ifelse(FALSE, x, y)))
+
+  expect_true(is.matrix(ifelse(FALSE, matrix(2, 2), matrix(2, 2))))
 })

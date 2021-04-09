@@ -6,7 +6,7 @@ Authors@R: person("Giuseppe", "Acito", email = "giuseppe.acito@gmail.com", role
 Description: This is a bunch of utils I keep spreading in different packages: I
     decided to collect them under a dedicated package.
 Depends:
-    R (>= 3.3.0)
+    R (>= 3.5.0)
 Imports:
     methods,
     parallel,
@@ -24,10 +24,9 @@ Suggests:
     roxygen2
 LazyData: true
 Collate:
-    'options.r'
-    'flypwd.r'
     'utils.r'
     'ini_parse.r'
+    'options.r'
     'stack.r'
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.1
 Encoding: UTF-8
