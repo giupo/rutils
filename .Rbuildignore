@@ -17,6 +17,5 @@ scripts
 ^packrat/
 ^\.Rprofile$
 ^\.travis.yml$
-^renv$
-^renv\.lock$
 CHANGELOG.md
+\.gitlab-ci.yml
