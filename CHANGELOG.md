@@ -4,6 +4,11 @@ Changelog
 
 (unreleased)
 ------------
+- Bump version: 0.7.5 → 0.8.0. [giupo]
+- Bump version: 0.7.4 → 0.7.5. [giupo]
+- Completed code coverage. [giupo]
+- Updates to testthat 3. [giupo]
+- Updates changelog. [giupo]
 - Bump version: 0.7.3 → 0.7.4. [giupo]
 - Adds ifelse. [giupo]
 - Bump version: 0.7.2 → 0.7.3. [Giuseppe Acito]

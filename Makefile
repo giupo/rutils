@@ -53,6 +53,8 @@ codecov:
 CHANGELOG.md:
 	gitchangelog | grep -v "git-svn-id" > CHANGELOG.md
 
+changelog: CHANGELOG.md
+	
 deps:
 	Rscript -e 'install.packages("R6", repos="https://cran.rstudio.com")'
 	Rscript -e 'devtools::install_cran(c("testthat", "roxygen2", "mockery", "covr"))'
