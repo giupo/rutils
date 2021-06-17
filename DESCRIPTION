@@ -8,20 +8,16 @@ Description: This is a bunch of utils I keep spreading in different packages: I
 Depends:
     R (>= 3.5.0)
 Imports:
-    methods,
-    parallel,
-    doParallel,
-    foreach,
-    testthat,
     tools,
+    utils,
     R6
 License: MIT + file LICENSE
 Suggests:
     devtools,
-    crayon,
-    R6,
-    xml2,
-    roxygen2
+    testthat,
+    roxygen2,
+    mockery,
+    covr
 LazyData: true
 Collate:
     'utils.r'
@@ -30,3 +26,5 @@ Collate:
     'stack.r'
 RoxygenNote: 7.1.1
 Encoding: UTF-8
+Config/testthat/parallel: false
+Config/testthat/edition: 3

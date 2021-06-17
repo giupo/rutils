@@ -1,5 +1,3 @@
-context("Stack")
-
 test_that("I can create a Stack", {
   x <- Stack$new()
   expect_true(is.Stack(x))
@@ -16,7 +14,7 @@ test_that("I can push an item into a Stack", {
 test_that("I can peek items from a Stack", {
   x <- Stack$new()
   ex <- 5
-  for(i in seq(ex)) {
+  for (i in seq(ex)) {
     x$push(i)
   }
   expect_equal(x$length(), ex)
@@ -45,3 +43,4 @@ test_that("I have error if I pop from an empty Stack", {
   x <- Stack$new()
   expect_error(x$pop())
 })
+

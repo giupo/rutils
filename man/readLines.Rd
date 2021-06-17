@@ -4,7 +4,7 @@
 \alias{readLines}
 \title{base::readLines error reporting sucks.}
 \usage{
-(con, n, ok, warn, encoding)
+readLines(con, n, ok, warn, encoding)
 }
 \arguments{
 \item{con}{@see base::readLines}

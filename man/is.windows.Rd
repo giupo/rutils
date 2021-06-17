@@ -12,6 +12,3 @@ is.windows()
 \description{
 returns \code{TRUE} if the current R sessions runs on a Windows system
 }
-\author{
-Giuseppe Acito
-}

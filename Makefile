@@ -45,13 +45,14 @@ so:
 	Rscript --vanilla -e 'devtools::compile_dll()'
 
 coverage:
-	Rscript -e 'covr::package_coverage(line_exclusions=file.path("renv", list.files(path="renv", recursive=TRUE)))'
+	Rscript -e 'covr::package_coverage()'
 
 codecov:
-	Rscript -e 'covr::codecov(line_exclusions=file.path("renv", list.files(path="packrat", recursive=TRUE)))'
-
-restore:
-	R -e 'renv::restore()'
+	Rscript -e 'covr::codecov()'
 
 CHANGELOG.md:
 	gitchangelog | grep -v "git-svn-id" > CHANGELOG.md
+
+deps:
+	Rscript -e 'install.packages("R6", repos="https://cran.rstudio.com")'
+	Rscript -e 'devtools::install_cran(c("testthat", "roxygen2", "mockery", "covr"))'

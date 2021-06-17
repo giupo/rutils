@@ -1,7 +1,7 @@
 #' base::readLines error reporting sucks.
 #'
 #' @name readLines
-#' @usage(con, n, ok, warn, encoding)
+#' @usage readLines(con, n, ok, warn, encoding)
 #' @seealso base::readLines
 #' @param con @see base::readLines
 #' @param n @see base::readLines
@@ -10,15 +10,14 @@
 #' @param encoding @see base::readLines
 #' @export
 
-readLines <- function(con=stdin(), n=-1L, ok=TRUE,
-                      warn=TRUE, encoding="unknown") {
+readLines <- function(con=stdin(), n = -1L, ok =  TRUE,  #nolint
+                      warn = TRUE, encoding = "unknown") {
   tryCatch({
     suppressWarnings(
       base::readLines(
-        con=con, n=n, ok=ok, warn=warn, encoding=encoding))
-    },
-    error = function(cond) {
-      if(is.character(con)) {
+        con = con, n = n, ok = ok, warn = warn, encoding = encoding))
+    }, error = function(cond) {
+      if (is.character(con)) {
         stop('"', con, '": ', cond)
       } else {
         stop(cond)
@@ -45,7 +44,7 @@ whoami <- function() {
 }
 
 #' Creates a working directory
-#' 
+#'
 #' Creates a temp working directory;
 #' The user is in charge of deleting it.
 #'
@@ -56,7 +55,7 @@ whoami <- function() {
 #' @author Giuseppe Acito
 #' @return the path of the newly created workdir
 
-workDir <- function(prefix=NULL) {
+workDir <- function(prefix = NULL) { #nolint
   if(is.null(prefix)) {
     prefix <- ifelse(is.windows(), "C:\\temp", "/tmp/work")
   }
@@ -91,7 +90,7 @@ tempdir <- function(prefix = NULL) {
   } else {
     path <- file.path(workdir, prefix, .randomString())
   }
-  
+
   suppressWarnings(dir.create(path, recursive=TRUE))
 
   if(!path %in% .tempdirs) {
@@ -108,11 +107,10 @@ tempdir <- function(prefix = NULL) {
 #' @author Giuseppe Acito
 #' @param path path
 #' @export
-#' @importFrom tools file_path_sans_ext
 #' @return just the name of the path
 
-.basename <- function(path) {
-  file_path_sans_ext(basename(path))
+.basename <- function(path) { # nolint
+  tools::file_path_sans_ext(basename(path))
 }
 
 #' genera stringhe random
@@ -122,15 +120,16 @@ tempdir <- function(prefix = NULL) {
 #' @param length lunghezza della stringa (default = 8)
 #' @param prefix evantuale prefisso (default = "")
 #' @rdname randomString
-#' @return stringa con caratteri random di lunghezza = `length` ed un prefisso = `prefix`
+#' @return stringa con caratteri random di lunghezza = `length` 
+#'    ed un prefisso = `prefix`
 #' @export
 
-.randomString <- function(length=8, prefix="") {
+.randomString <- function(length = 8, prefix = "") { # nolint
   paste0(prefix, paste(
     sample(
       c(0:9, letters, LETTERS),
-      length, replace=TRUE),
-    collapse=""))
+      length, replace = TRUE),
+    collapse = ""))
 }
 
 #' controlla se una stringa e' nell'altra
@@ -140,10 +139,10 @@ tempdir <- function(prefix = NULL) {
 #' @usage .containsString(stringa, substring)
 #' @param stringa stringa da controllare
 #' @param substring sottoscringa da cercare in `stringa`
-#' @return -1 se non trova `substring` in `stringa` altrimenti la posizione 
+#' @return -1 se non trova `substring` in `stringa` altrimenti la posizione
 #' @export
 
-.containsString <- function(stringa, substring)
+.containsString <- function(stringa, substring) # nolint
   as.numeric(regexpr(substring, stringa)) != -1
 
 #' Slides the \code{x} object in \code{n} parts
@@ -155,12 +154,12 @@ tempdir <- function(prefix = NULL) {
 #' @param n the number of parts
 #' @return the list containing the \code{n} parts
 
-slice<-function(x,n) {
-  if(n == 0) {
+slice <- function(x, n) {
+  if (n == 0) {
     x
   } else {
-    N <- length(x);
-    lapply(seq(1, N, n), function(i) x[i:min(i+n-1,N)])
+    num <- length(x)
+    lapply(seq(1, num, n), function(i) x[i:min(i + n - 1, num)])
   }
 }
 
@@ -175,7 +174,7 @@ slice<-function(x,n) {
 
 unfold <- function(x) {
   for(name in names(x)) {
-    assign(name, x[[name]], envir=parent.frame())
+    assign(name, x[[name]], envir = parent.frame())
   }
 }
 
@@ -185,9 +184,8 @@ unfold <- function(x) {
 #' @return \code{TRUE} if the current R sessions runs on a Windows system
 #' @title Misc Utils
 #' @export
-#' @author Giuseppe Acito
 
-is.windows <- function() Sys.info()[['sysname']] == "Windows"
+is.windows <- function() Sys.info()[['sysname']] == "Windows" # nolint
 
 #' Checks if system is OSX
 #'
@@ -197,7 +195,7 @@ is.windows <- function() Sys.info()[['sysname']] == "Windows"
 #' @return `TRUE` if run on OSX, `FALSE` otherwise
 #' @export
 
-is.darwin <- function() Sys.info()[['sysname']] == "Darwin"
+is.darwin <- function() Sys.info()[["sysname"]] == "Darwin" # nolint
 
 #' internal function to check if the runtime environment is jenkins.
 #'
@@ -209,7 +207,7 @@ is.darwin <- function() Sys.info()[['sysname']] == "Darwin"
 #' @title Internal Functions
 #' @export
 
-is.jenkins <- function() Sys.getenv("BUILD_URL") != ""
+is.jenkins <- function() Sys.getenv("BUILD_URL") != "" # nolint
 
 #' Esegue il prodotto cartesiano degli array di stringhe passati come argomento
 #'
@@ -240,8 +238,7 @@ combine2 <- function(..., prefix = "", sep = "") {
 #' @param id eventuale id (per usi futuri)
 #' @export
 
-notify <- function(titolo, msg, id=NULL) {
-}
+notify <- function(titolo, msg, id=NULL) {}
 
 #' @rdname notify
 #' @export
@@ -250,11 +247,11 @@ NOTIFY <- notify
 
 
 #' ifelse come dio comanda
-#' 
+#'
 #' Questo `ifelse0`, a differenze di `ifelse` non modifica
 #' lo shape dell'oggetto ritornato. (il che, oggettivamente
 #' l'e' una bischerata)
-#' 
+#'
 #' @name ifelse
 #' @usage ifelse(test, a, b)
 #' @param test un predicato che deve restituire `TRUE/FALSE`

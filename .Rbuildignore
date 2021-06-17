@@ -19,3 +19,4 @@ scripts
 ^\.travis.yml$
 ^renv$
 ^renv\.lock$
+CHANGELOG.md

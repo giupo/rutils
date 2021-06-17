@@ -1,16 +1,28 @@
-
+#' Stack data structure
+#'
+#' This is a stack data structure, operations you can do with it are:
+#'
+#'  - push
+#'  - pop
+#'  - peek
+#'
 #' @export
-#' @importFrom R6 R6Class
+#' @examples \dontrun{
+#'  s <- Stack()
+#'  s$push(1)
+#'  s$peek()
+#'  s$pop()
+#' }
 
-Stack <- R6Class(
+Stack <- R6::R6Class( # nolint
   "Stack",
   public = list(
     initialize = function(...) {
-      for(item in list(...)) {
+      for (item in list(...)) {
         self$push(item)
       }
     },
-    
+
     push = function(item) {
       private$stack <- append(item, private$stack)
     },
@@ -26,9 +38,9 @@ Stack <- R6Class(
       private$stack <- tail(private$stack, self$length() - 1)
       ret
     },
-    
+
     empty = function() self$length() == 0,
-    
+
     length = function() length(private$stack),
 
     show = function(sep="\n") {
@@ -36,7 +48,7 @@ Stack <- R6Class(
         cat("Empty Stack\n")
         return(invisible(NULL))
       }
-      cat(paste0(private$stack, collapse=sep))
+      cat(paste0(private$stack, collapse = sep))
       invisible(NULL)
     }
   ),
@@ -55,6 +67,6 @@ Stack <- R6Class(
 #' @return `TRUE` if x is a Stack; `FALSE` otherwise
 #' @export
 
-is.Stack <- function(x) {
+is.Stack <- function(x) { # nolint
   inherits(x, "Stack")
 }

@@ -12,7 +12,8 @@
 \item{prefix}{evantuale prefisso (default = "")}
 }
 \value{
-stringa con caratteri random di lunghezza = `length` ed un prefisso = `prefix`
+stringa con caratteri random di lunghezza = `length` 
+   ed un prefisso = `prefix`
 }
 \description{
 genera stringhe random

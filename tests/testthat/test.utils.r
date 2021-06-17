@@ -1,56 +1,55 @@
-context("Generic Utils")
-
 test_that(".basename behaves returns the name without the ext",{
-  fileName <- "/test/test/nomefile.txt"
-  expect_equal(.basename(fileName), "nomefile")
-  expect_true(.basename(fileName) != "nomefile.txt")
-  expect_true(.basename(fileName) != basename(fileName))
+  file_name <- "/test/test/nomefile.txt"
+  expect_equal(.basename(file_name), "nomefile")
+  expect_true(.basename(file_name) != "nomefile.txt")
+  expect_true(.basename(file_name) != basename(file_name))
 })
 
 test_that("random string generates a random string of the specified length", {
   rand1 <- .randomString()
-  rand2Length <- 9
-  rand2 <- .randomString(rand2Length)
+  rand2_length <- 9
+  rand2 <- .randomString(rand2_length)
   expect_true(rand1 != rand2)
   expect_equal(nchar(rand1), 8)
-  expect_equal(nchar(rand2), rand2Length)
+  expect_equal(nchar(rand2), rand2_length)
 })
 
 test_that("randomString generates a random string with a prefix", {
-  rand1 <- .randomString(prefix="ciaoMondo")
+  rand1 <- .randomString(prefix = "ciaoMondo")
   expect_true(grepl("^ciaoMondo", rand1))
 })
 
 test_that("work_dir creates a directory", {
-  file_path = workDir()
+  file_path <- workDir()
+  infos <- file.info(file_path)
+  expect_true(infos$isdir)
+  unlink(file_path)
+})
+
+
+test_that("tempdir creates a directory", {
+  file_path <- tempdir()
   infos <- file.info(file_path)
   expect_true(infos$isdir)
   unlink(file_path)
 })
 
 test_that("tempdir creates a directory", {
-  file_path = tempdir()
-  infos <- file.info(file_path)
-  expect_true(infos$isdir)
-  unlink(file_path)
-})
-
-test_that("tempdir creates a directory", {
-  file1_path = tempdir()
-  file2_path = tempdir()
+  file1_path <- tempdir()
+  file2_path <- tempdir()
   expect_true(file1_path != file2_path)
   unlink(file1_path)
   unlink(file2_path)
 })
 
 test_that("containsString behaves as expected", {
-  expect_true(.containsString("Ciao mondo","iao"))
+  expect_true(.containsString("Ciao mondo", "iao"))
   expect_true(.containsString("AA", "BB") == FALSE)
   expect_true(.containsString("iao", "Ciao Mondo") == FALSE)
 })
 
 test_that("whoami returns a lowerified userid (used in BdI)", {
-  expected <- c(letters, as.character(seq(0,9)))
+  expected <- c(letters, as.character(seq(0, 9)))
   x <- whoami()
   tokenize_whoami <- lapply(seq(1,nchar(x),1), function(i) substr(x, i, i))
   expect_true(all(tokenize_whoami %in% expected))
@@ -58,57 +57,52 @@ test_that("whoami returns a lowerified userid (used in BdI)", {
 
 
 test_that("ini_parse works as expected", {
-    fileini <- file.path(system.file(package="rutils"), "ini/test.ini")
-    ini <- ini_parse(fileini)
-    expect_true("section" %in% names(ini))
-    expect_true("section2" %in% names(ini))
-    section <- ini$section
-    expect_equal(section[["A"]], "B")
-    expect_equal(section[["B"]], "1")
+  fileini <- file.path(system.file(package = "rutils"), "ini/test.ini")
+  ini <- ini_parse(fileini)
+  expect_true("section" %in% names(ini))
+  expect_true("section2" %in% names(ini))
+  section <- ini$section
+  expect_equal(section[["A"]], "B")
+  expect_equal(section[["B"]], "1")
 
-    section2 <- ini$section2
-    expect_equal(section2[["A"]], "B")
-    expect_equal(section2[["B"]], "A")
-
+  section2 <- ini$section2
+  expect_equal(section2[["A"]], "B")
+  expect_equal(section2[["B"]], "A")
 })
 
-test_that("ini_parse throws an error with filename in it", {
+test_that("ini_parse throws an error with file_name in it", {
   fileini <- "/i/don/t/exist"
   expect_error(ini_parse(fileini), fileini)
 })
 
 test_that("If there's username in the system env, return it", {
-  if(!require(mockery)) skip("mockery needed")
+  skip_if_not(require(mockery))
 
-  stub(whoami, 'Sys.getenv', function(x, ... ) {
-    if(x=="username") {
-      "pluto"
-    } else {
-      base::Sys.getenv(x, ...)
-    }
-  })
-  
+  sys_getenv <- mock("pluto")
+  stub(whoami, "Sys.getenv", sys_getenv)
+
   expect_equal(whoami(), "pluto")
+  expect_called(sys_getenv, 1)
 })
 
 test_that("tempdir with prefix returns a dir with prefix", {
-  if(!require(mockery)) skip("mockery needed") 
-  stub(.containsString, 'dir.create', function(...) {})
-  tmp <- tempdir(prefix="ciccio")
+  skip_if_not(require(mockery))
+  stub(.containsString, "dir.create", function(...) {})
+  tmp <- tempdir(prefix = "ciccio")
   expect_true(.containsString(tmp, "ciccio"))
 })
 
 test_that("unfold behaves as expected", {
-  data <- list(a=1,b=2)
+  data <- list(a = 1, b = 2)
   unfold(data)
   expect_equal(a, 1)
   expect_equal(b, 2)
 })
 
 test_that("slice works as expected", {
-  data <- list(a=1,b=1,c=1,d=1)
+  data <- list(a = 1, b = 1, c = 1, d = 1)
   expect_equal(slice(data, 0), data)
-  expect_equal(slice(data, 2), list(list(a=1,b=1), list(c=1,d=1)))
+  expect_equal(slice(data, 2), list(list(a = 1, b = 1), list(c = 1, d = 1)))
 })
 
 

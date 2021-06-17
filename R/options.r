@@ -7,13 +7,13 @@
 #' @param value value for the option
 #' @export
 
-setOption <- function(key, value) {
-  if(is.character(value)) {
-    value <- shQuote(value, type="sh") # what a shameful hack
+setOption <- function(key, value) { # nolint
+  if (is.character(value)) {
+    value <- shQuote(value, type = "sh") # what a shameful hack
   }
-  
-  if(is.null(value)) {
+
+  if (is.null(value)) {
     value <- "NULL"
   }
-  eval(parse(text=paste0("options(",key, "=", value,")")))
+  eval(parse(text = paste0("options(", key, "=", value, ")")))
 }
