@@ -119,3 +119,42 @@ test_that("rutils::ifelse doesn't changes the shape of objects", {
 
   expect_true(is.matrix(ifelse(FALSE, matrix(2, 2), matrix(2, 2))))
 })
+
+
+test_that("readLines fail showing the path", {
+  expect_error(readLines("/NON/ESISTO/"), "/NON/ESISTO")
+})
+
+test_that("readLines fails not showing path if no file path is passed", {
+  skip_if_not(require(mockery))
+  base_readlines <- mock(stop("Urka"))
+  stub(readLines, "base::readLines", base_readlines)
+  expect_error(readLines(), "Urka")
+  expect_called(base_readlines, 1)
+})
+
+test_that("is.darwin returns true if \"Darwin\" is sysname", {
+  skip_if_not(require(mockery))
+  stub(is.darwin, "Sys.info", list(sysname = "Darwin"))
+  expect_true(is.darwin())
+})
+
+test_that("is.windows returns true if \"Windows\" is sysname", {
+  skip_if_not(require(mockery))
+  stub(is.windows, "Sys.info", list(sysname = "Windows"))
+  expect_true(is.windows())
+})
+
+test_that("is.jenkins returns true if under jenkins", {
+  skip_if_not(require(mockery))
+  stub(is.jenkins, "Sys.getenv", "NOT_EMPTY")
+  expect_true(is.jenkins())
+})
+
+test_that("combine returns the cartesian product", {
+  a <- c("A", "B")
+  b <- c("1", "2", "3")
+  x <- combine2(a, b)
+  expect_equal(x, c("A1", "B1", "A2", "B2", "A3", "B3"))
+
+})

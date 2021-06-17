@@ -44,3 +44,22 @@ test_that("I have error if I pop from an empty Stack", {
   expect_error(x$pop())
 })
 
+test_that("I can inizialize a Stack with elements on constructor", {
+  x <- Stack$new(1, 2, 3)
+  expect_equal(x$length(), 3)
+
+  expect_equal(x$pop(), 3)
+  expect_equal(x$pop(), 2)
+  expect_equal(x$pop(), 1)
+  expect_error(x$pop())
+})
+
+test_that("shows output", {
+  x <- Stack$new(1, 2, 3)
+  expect_output(x$show())
+})
+
+test_that("shows output for empty stack", {
+  x <- Stack$new()
+  expect_output(x$show(), "Empty Stack")
+})
