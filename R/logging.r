@@ -143,11 +143,6 @@ rolling_file <- function(filename, max_size, max_files, lock_file) {
 
 
 serious_layout_colored <- function(level, msg, id = "", ...) {
-  if (length(list(...)) > 0) {
-    parsed <- lapply(list(...), function(x) if (is.null(x)) "NULL" else x)
-    msg <- do.call(sprintf, c(msg, parsed))
-  }
-
   color <- switch(
     names(level),
     "FATAL" = function(x) crayon::bgRed(crayon::black(x)),

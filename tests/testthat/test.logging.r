@@ -183,3 +183,41 @@ test_that("serious_layout_colored contains the level as string", {
     expect_match(line, level)
   }
 })
+
+test_that("message_to_console: total useless test just for coverage", {
+  expect_message(message_to_console("pippo"), "pippo")
+})
+
+test_that("appender_rolling doesn't print to console", {
+  workdir <- tempdir()
+  on.exit({
+    fs::dir_delete(workdir)
+  })
+
+  max_size <- 1000
+  max_files <- 5
+  logfile <- file.path(workdir, "file.log")
+  lockfile <- file.path(workdir, ".lock")
+  loggername <- "test.logger"
+  appender <- appender_rolling(logfile, console = FALSE, lock_file = lockfile)
+  futile.logger::flog.logger(loggername, appender = appender)
+
+  expect_message(.info("ciao mondo", name = loggername), NA)
+})
+
+test_that("appender_rolling prints to console", {
+  workdir <- tempdir()
+  on.exit({
+    fs::dir_delete(workdir)
+  })
+
+  max_size <- 1000
+  max_files <- 5
+  logfile <- file.path(workdir, "file.log")
+  lockfile <- file.path(workdir, ".lock")
+  loggername <- "test.logger"
+  appender <- appender_rolling(logfile, console = TRUE, lock_file = lockfile)
+  futile.logger::flog.logger(loggername, appender = appender)
+
+  expect_message(.info("ciao mondo", name = loggername))
+})

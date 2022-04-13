@@ -81,18 +81,18 @@ test_that("ini_parse throws an error with file_name in it", {
 })
 
 test_that("If there's username in the system env, return it", {
-  skip_if_not(require(mockery))
+  skip_if_not(requireNamespace("mockery"))
 
-  sys_getenv <- mock("pluto")
-  stub(whoami, "Sys.getenv", sys_getenv)
+  sys_getenv <- mockery::mock("pluto")
+  mockery::stub(whoami, "Sys.getenv", sys_getenv)
 
   expect_equal(whoami(), "pluto")
-  expect_called(sys_getenv, 1)
+  mockery::expect_called(sys_getenv, 1)
 })
 
 test_that("tempdir with prefix returns a dir with prefix", {
-  skip_if_not(require(mockery))
-  stub(.containsString, "dir.create", function(...) {})
+  skip_if_not(requireNamespace("mockery"))
+  mockery::stub(.containsString, "dir.create", function(...) {})
   tmp <- tempdir(prefix = "ciccio")
   expect_true(.containsString(tmp, "ciccio"))
 })
@@ -131,28 +131,28 @@ test_that("readLines fail showing the path", {
 })
 
 test_that("readLines fails not showing path if no file path is passed", {
-  skip_if_not(require(mockery))
-  base_readlines <- mock(stop("Urka"))
-  stub(readLines, "base::readLines", base_readlines)
+  skip_if_not(requireNamespace("mockery"))
+  base_readlines <- mockery::mock(stop("Urka"))
+  mockery::stub(readLines, "base::readLines", base_readlines)
   expect_error(readLines(), "Urka")
-  expect_called(base_readlines, 1)
+  mockery::expect_called(base_readlines, 1)
 })
 
 test_that("is.darwin returns true if \"Darwin\" is sysname", {
-  skip_if_not(require(mockery))
-  stub(is.darwin, "Sys.info", list(sysname = "Darwin"))
+  skip_if_not(requireNamespace("mockery"))
+  mockery::stub(is.darwin, "Sys.info", list(sysname = "Darwin"))
   expect_true(is.darwin())
 })
 
 test_that("is.windows returns true if \"Windows\" is sysname", {
-  skip_if_not(require(mockery))
-  stub(is.windows, "Sys.info", list(sysname = "Windows"))
+  skip_if_not(requireNamespace("mockery"))
+  mockery::stub(is.windows, "Sys.info", list(sysname = "Windows"))
   expect_true(is.windows())
 })
 
 test_that("is.jenkins returns true if under jenkins", {
-  skip_if_not(require(mockery))
-  stub(is.jenkins, "Sys.getenv", "NOT_EMPTY")
+  skip_if_not(requireNamespace("mockery"))
+  mockery::stub(is.jenkins, "Sys.getenv", "NOT_EMPTY")
   expect_true(is.jenkins())
 })
 
