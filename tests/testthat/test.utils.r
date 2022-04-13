@@ -21,9 +21,9 @@ test_that("randomString generates a random string with a prefix", {
 
 test_that("work_dir creates a directory", {
   file_path <- workDir()
+  on.exit(unlink(file_path))
   infos <- file.info(file_path)
   expect_true(infos$isdir)
-  unlink(file_path)
 })
 
 
@@ -37,9 +37,12 @@ test_that("tempdir creates a directory", {
 test_that("tempdir creates a directory", {
   file1_path <- tempdir()
   file2_path <- tempdir()
+  on.exit({
+    unlink(file1_path)
+    unlink(file2_path)
+  })
   expect_true(file1_path != file2_path)
-  unlink(file1_path)
-  unlink(file2_path)
+
 })
 
 test_that("containsString behaves as expected", {
@@ -71,8 +74,10 @@ test_that("ini_parse works as expected", {
 })
 
 test_that("ini_parse throws an error with file_name in it", {
-  fileini <- "/i/don/t/exist"
-  expect_error(ini_parse(fileini), fileini)
+  skip_if_not(requireNamespace("mockery"))
+  mockery::stub(ini_parse, "configr::is.ini.file", FALSE)
+  fileini <- "/some/file.ini"
+  expect_error(ini_parse(fileini))
 })
 
 test_that("If there's username in the system env, return it", {
@@ -156,5 +161,4 @@ test_that("combine returns the cartesian product", {
   b <- c("1", "2", "3")
   x <- combine2(a, b)
   expect_equal(x, c("A1", "B1", "A2", "B2", "A3", "B3"))
-
 })

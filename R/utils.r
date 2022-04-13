@@ -226,25 +226,6 @@ combine2 <- function(..., prefix = "", sep = "") {
   suppressWarnings(paste0(prefix, levels(interaction(..., sep = sep))))
 }
 
-#' Stub per funzione di notify
-#'
-#' Per ora non fan nulla ma la modifichero' a breve.
-#'
-#' @name notify
-#' @rdname notify
-#' @usage notify(titolo, msg, id)
-#' @param titolo titolo messaggio
-#' @param msg testo del messaggio
-#' @param id eventuale id (per usi futuri)
-#' @export
-
-notify <- function(titolo, msg, id=NULL) {}
-
-#' @rdname notify
-#' @export
-
-NOTIFY <- notify
-
 
 #' ifelse come dio comanda
 #'

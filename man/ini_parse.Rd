@@ -15,6 +15,3 @@ a list containing the INI files' informations
 \description{
 Parses a file INI
 }
-\note{
-full credit to \url{http://goo.gl/V0jwlz}
-}
