@@ -18,6 +18,9 @@ This is a stack data structure, operations you can do with it are:
  s$peek()
  s$pop()
 }
+Constructor for Stack
+
+Every item passed in the ellipsis is pushed in the stack
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -40,6 +43,14 @@ This is a stack data structure, operations you can do with it are:
 \if{html}{\out{<div class="r">}}\preformatted{Stack$new(...)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{...}}{items to be pushed in the stack
+Push an item in the stack}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-push"></a>}}
@@ -49,6 +60,17 @@ This is a stack data structure, operations you can do with it are:
 \if{html}{\out{<div class="r">}}\preformatted{Stack$push(item)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{item}}{object to be pushed
+Peek an item from the stack
+
+Return the item on top of the stack. Raises an error if the
+stack is empty}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-peek"></a>}}
@@ -58,6 +80,13 @@ This is a stack data structure, operations you can do with it are:
 \if{html}{\out{<div class="r">}}\preformatted{Stack$peek()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+element on top of the stack
+Pops an item from the stack
+
+returns and removes the item on top of the stack. If the stack
+is empty, it raises an error.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-pop"></a>}}
@@ -67,6 +96,10 @@ This is a stack data structure, operations you can do with it are:
 \if{html}{\out{<div class="r">}}\preformatted{Stack$pop()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+element on top of the stack
+`TRUE` is stack is empty
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-empty"></a>}}
@@ -76,6 +109,10 @@ This is a stack data structure, operations you can do with it are:
 \if{html}{\out{<div class="r">}}\preformatted{Stack$empty()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+`TRUE` if empty, `FALSE` otherwise
+Returns the length of the stack
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-length"></a>}}
@@ -85,6 +122,10 @@ This is a stack data structure, operations you can do with it are:
 \if{html}{\out{<div class="r">}}\preformatted{Stack$length()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+the number of elements in the stack
+Internal method for object rappresentatio on REPL
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-show"></a>}}
@@ -94,6 +135,13 @@ This is a stack data structure, operations you can do with it are:
 \if{html}{\out{<div class="r">}}\preformatted{Stack$show(sep = "\\n")}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{sep}}{separator used on the output}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}

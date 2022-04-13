@@ -10,7 +10,12 @@ Depends:
 Imports:
     tools,
     utils,
-    R6
+    R6,
+    futile.logger,
+    glue,
+    crayon,
+    fs,
+    configr
 License: MIT + file LICENSE
 Suggests:
     devtools,
@@ -22,9 +27,10 @@ LazyData: true
 Collate:
     'utils.r'
     'ini_parse.r'
+    'logging.r'
     'options.r'
     'stack.r'
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Encoding: UTF-8
 Config/testthat/parallel: false
 Config/testthat/edition: 3
