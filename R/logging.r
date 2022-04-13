@@ -113,6 +113,10 @@ appender_rolling <- function(filename, console = FALSE, inherit = TRUE,
   }
 }
 
+#' predicate that tells if a file needs to be "rolled"
+#' 
+#' @param filename path to be checked
+#' @param max_size size beyond that filename has to be rolled
 
 should_roll_file <- function(filename, max_size) {
   file.exists(filename) && file.info(filename)$size > max_size
@@ -162,28 +166,6 @@ serious_layout_colored <- function(level, msg, id = "", ...) {
     newline = crayon::reset("\n"))
 }
 
-
-# begin nocov
-test_logger <- function() {
-  appender <- appender_rolling("/home/user/m024000/file.log",
-    console = T, max_size = 300000, max_files = 5,
-    lock_file = "/home/user/m024000/.futile.logger.lock")
-  name <- "logger"
-
-  futile.logger::flog.logger(name, appender = appender,
-    layout = serious_layout_colored)
-
-  for(i in seq(1000)) {
-    .trace("This is a trace message", name = name)
-    .debug("This is a debug message", name = name)
-    .info("This is a info message", name = name)
-    .warn("This is a warn message", name = name)
-    .error("This is a error message", name = name)
-    .fatal("This is a fatal message", name = name)
-  }
-}
-# end nocov
-
 #' Init logging based on configuration file
 #'
 #' This tries to mimic the common pattern to use
@@ -195,5 +177,4 @@ test_logger <- function() {
 
 init_logging <- function(config_filename) {
   stopifnot(file.exists(config_filename))
-  
 }
