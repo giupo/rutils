@@ -145,8 +145,30 @@ rolling_file <- function(filename, max_size, max_files, lock_file) {
   fs::file_move(filename, glue::glue("{filename}.1"))
 }
 
+get_parent_func_name <- function(where_) {
+  the_function <- tryCatch(deparse(sys.call(where_ - 1)[[1]]),
+        error = function(e) "(shell)")
+  the_function <- ifelse(
+    length(grep("flog\\.", the_function)) == 0, the_function, "(shell)")
+
+  the_function
+}
+
+string_to_loglevel <- function(str_level) {
+  switch(
+    str_level,
+    "FATAL" = futile.logger::FATAL,
+    "ERROR" = futile.logger::ERROR,
+    "WARN"  = futile.logger::WARN,
+    "INFO"  = futile.logger::INFO,
+    "DEBUG" = futile.logger::DEBUG,
+    "TRACE" = futile.logger::TRACE,
+    futile.logger::INFO)
+}
+
 
 serious_layout_colored <- function(level, msg, id = "", ...) {
+  call_level <- -10 # found empirically
   color <- switch(
     names(level),
     "FATAL" = function(x) crayon::bgRed(crayon::black(x)),
@@ -157,13 +179,38 @@ serious_layout_colored <- function(level, msg, id = "", ...) {
     "TRACE" = crayon::blurred,
     crayon::white)
 
-  glue::glue("{level} [{time} - {user} - {pid}] {msg}{newline}",
+  glue::glue("{level} [{time} - {user} - {pid} - {func_name}] {msg}{newline}",
     level = crayon::bold(color(names(level))),
     time = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
     user = whoami(),
     pid = Sys.getpid(),
+    func_name = get_parent_func_name(call_level),
     msg = msg,
     newline = crayon::reset("\n"))
+}
+
+# begin nolint
+LOG_ROOT <- "ROOT"
+
+LOG_APPENDER_DEF <- "appender"
+LOG_FILE_DEF <- "file"
+LOG_MAX_SIZE_DEF <- "max_size"
+LOG_MAX_FILES_DEF <- "max_files"
+LOG_CONSOLE_DEF <- "console"
+LOG_LEVEL_DEF <- "level"
+LOG_INHERIT_DEF <- "inherit"
+LOG_LOCKFILE_DEF <- "lock_file"
+# end nolint
+
+
+appender_factory <- function(logger_def) {
+  appender_fun <- eval(parse(text=logger_def[[LOG_APPENDER_DEF]]))
+
+  appender_fun(
+    logger_def[[LOG_FILE_DEF]], 
+    console = as.logical(logger_def[[LOG_CONSOLE_DEF]]),
+    inherit = as.logical(logger_def[[LOG_INHERIT_DEF]]), 
+    lock_file = logger_def[[LOG_LOCKFILE_DEF]])
 }
 
 #' Init logging based on configuration file
@@ -174,7 +221,45 @@ serious_layout_colored <- function(level, msg, id = "", ...) {
 #' This is way simpler than any other logging library out there.
 #'
 #' @param config_filename path to the configuration file
+#' @export
 
 init_logging <- function(config_filename) {
   stopifnot(file.exists(config_filename))
+  logger_names <- configr::eval.config.sections(config_filename)
+
+  # default values for ROOT logger if not defined in
+  # config_filename
+  log_root_conf <- list()
+  log_root_conf[[LOG_FILE_DEF]] <- "file.log"
+  log_root_conf[[LOG_INHERIT_DEF]] <- TRUE
+  log_root_conf[[LOG_MAX_SIZE_DEF]] <- 10 * 1024 * 1024
+  log_root_conf[[LOG_MAX_FILES_DEF]] <- 5
+  log_root_conf[[LOG_CONSOLE_DEF]] <- TRUE
+  log_root_conf[[LOG_APPENDER_DEF]] <- "rutils::appender_rolling"
+  log_root_conf[[LOG_LEVEL_DEF]] <- "TRACE"
+  log_root_conf[[LOG_LOCKFILE_DEF]] <- file.path(
+    path.expand("~"), ".rutils_logger.lock")
+
+  for (log_name in logger_names) {
+    logger_def <- configr::eval.config(
+      config = log_name,
+      file = config_filename)
+
+
+    for(config_def in names(log_root_conf)) {
+      logger_def[[config_def]] <- rutils::ifelse(
+        config_def %in% names(logger_def), 
+        logger_def[[config_def]],
+        log_root_conf[[config_def]])
+    }
+
+    # NOTE(giupo): this should handle different appenders, I dunno when
+    #  but this should
+    appender <- appender_factory(logger_def)
+
+    futile.logger::flog.logger(
+      log_name, string_to_loglevel(logger_def[[LOG_LEVEL_DEF]]),
+      appender = appender,
+      layout = serious_layout_colored)
+  }
 }

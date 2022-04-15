@@ -110,7 +110,7 @@ test_that("appender_rolling's function raises an error if not called by futile.l
 test_that("rolling file creates a new file when the filelength > max_size", {
   workdir <- tempdir()
   on.exit({
-    # fs::dir_delete(workdir)
+    fs::dir_delete(workdir)
   })
 
   max_size <- 1000
@@ -123,7 +123,7 @@ test_that("rolling file creates a new file when the filelength > max_size", {
 
   rolling_file(logfile, max_size, 2, lockfile)
   glob <- Sys.glob(paste0(logfile, "*"))
-  
+
   expect_equal(length(glob), 1)
   expect_equal(glob[[1]], paste0(logfile, ".1"))
 })
@@ -235,13 +235,62 @@ test_that("appender_rolling handles inherited log messages", {
   logfile <- file.path(workdir, "file.log")
   lockfile <- file.path(workdir, ".lock")
   loggername <- "test.logger"
-  appender <- appender_rolling(logfile, console = FALSE, lock_file = lockfile, inherit = FALSE)
+
+  logger_def <- list()
+  logger_def[[LOG_MAX_SIZE_DEF]] = 1000
+  logger_def[[LOG_MAX_FILES_DEF]] = 5
+  logger_def[[LOG_FILE_DEF]] = file.path(workdir, "file.log")
+  logger_def[[LOG_CONSOLE_DEF]] = FALSE
+  logger_def[[LOG_INHERIT_DEF]] = FALSE
+  logger_def[[LOG_LOCKFILE_DEF]] = file.path(workdir, ".lock")
+  logger_def[[LOG_APPENDER_DEF]] = "rutils::appender_rolling"
+  appender <- appender_factory(logger_def)
   futile.logger::flog.logger(loggername, appender = appender)
 
   expect_message(.info("ciao mondo", name = loggername), NA)
 
-  appender <- appender_rolling(logfile, console = FALSE, lock_file = lockfile, inherit = TRUE)
+  appender <- appender_rolling(
+    logfile, console = FALSE, lock_file = lockfile, inherit = TRUE)
+
   futile.logger::flog.logger(loggername, appender = appender)
 
   expect_message(.info("ciao mondo", name = loggername), NA)
 })
+
+
+test_that("string_to_loglevel works as expected", {
+  expect_equal(string_to_loglevel("INFO"), futile.logger::INFO)
+  expect_equal(string_to_loglevel("TRACE"), futile.logger::TRACE)
+  expect_equal(string_to_loglevel("DEBUG"), futile.logger::DEBUG)
+  expect_equal(string_to_loglevel("WARN"), futile.logger::WARN)
+  expect_equal(string_to_loglevel("ERROR"), futile.logger::ERROR)
+  expect_equal(string_to_loglevel("FATAL"), futile.logger::FATAL)
+})
+
+test_that("string_to_leglevel returns loglevel INFO if not recognizerd", {
+  expect_equal(string_to_loglevel("NONESISTO"), futile.logger::INFO)
+})
+
+test_that("init logging initialize a logger file", {
+  config.ini <- system.file("ini/logging_test.ini", package = "rutils")
+  init_logging(config.ini)
+  # sloppy sloppy test...
+  filename <- "rutils.log"  
+  unlink(filename)
+  expect_message(.info("test file append"), "test file append")
+  expect_true(file.exists(filename))
+  if(file.exists(filename)) unlink(filename)
+})
+
+test_that("init logging initialize a logger with correct level", {
+  config.ini <- system.file("ini/logging_test.ini", package = "rutils")
+  init_logging(config.ini)
+  # sloppy sloppy test...
+  filename <- "rutils.log"  
+  unlink(filename)
+  expect_message(.trace("test file append"), NA)
+  expect_false(file.exists(filename))
+  if(file.exists(filename)) unlink(filename)
+})
+
+

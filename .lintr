@@ -1,0 +1,2 @@
+exclude_start: "# begin nolint"
+exclude_end: "# end nolint"
