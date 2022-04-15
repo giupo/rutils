@@ -1,6 +1,3 @@
-# adapter for the logging system...
-
-
 #' Logs an INFO message
 #'
 #' @param ... params passed to the logger

@@ -15,7 +15,8 @@ Imports:
     glue,
     crayon,
     fs,
-    configr
+    configr,
+    filelock
 License: MIT + file LICENSE
 Suggests:
     devtools,
