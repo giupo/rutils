@@ -166,6 +166,12 @@ string_to_loglevel <- function(str_level) {
 
 serious_layout_colored <- function(level, msg, id = "", ...) {
   call_level <- -10 # found empirically
+
+  if (length(list(...)) > 0) {
+    parsed <- lapply(list(...), function(x) if (is.null(x)) "NULL" else x)
+    msg <- do.call(sprintf, c(msg, parsed))
+  }
+
   color <- switch(
     names(level),
     "FATAL" = function(x) crayon::bgRed(crayon::black(x)),
@@ -206,7 +212,7 @@ appender_factory <- function(logger_def) {
   appender_fun(
     logger_def[[LOG_FILE_DEF]], 
     console = as.logical(logger_def[[LOG_CONSOLE_DEF]]),
-    inherit = as.logical(logger_def[[LOG_INHERIT_DEF]]), 
+    inherit = as.logical(logger_def[[LOG_INHERIT_DEF]]),
     lock_file = logger_def[[LOG_LOCKFILE_DEF]])
 }
 
@@ -243,9 +249,9 @@ init_logging <- function(config_filename) {
       file = config_filename)
 
 
-    for(config_def in names(log_root_conf)) {
+    for (config_def in names(log_root_conf)) {
       logger_def[[config_def]] <- rutils::ifelse(
-        config_def %in% names(logger_def), 
+        config_def %in% names(logger_def),
         logger_def[[config_def]],
         log_root_conf[[config_def]])
     }

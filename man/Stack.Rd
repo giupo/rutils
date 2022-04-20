@@ -19,7 +19,6 @@ This is a stack data structure, operations you can do with it are:
  s$pop()
 }
 Constructor for Stack
-
 Every item passed in the ellipsis is pushed in the stack
 }
 \section{Methods}{

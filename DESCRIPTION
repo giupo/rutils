@@ -9,8 +9,6 @@ Depends:
     R (>= 3.5.0)
 Imports:
     tools,
-    utils,
-    R6,
     futile.logger,
     glue,
     crayon,

@@ -18,7 +18,6 @@ Stack <- R6::R6Class( # nolint
   "Stack",
   public = list(
     #' Constructor for Stack
-    #'
     #' Every item passed in the ellipsis is pushed in the stack
     #' @param ... items to be pushed in the stack
     initialize = function(...) {

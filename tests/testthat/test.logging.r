@@ -272,25 +272,42 @@ test_that("string_to_leglevel returns loglevel INFO if not recognizerd", {
 })
 
 test_that("init logging initialize a logger file", {
-  config.ini <- system.file("ini/logging_test.ini", package = "rutils")
-  init_logging(config.ini)
+  config_ini <- system.file("ini/logging_test.ini", package = "rutils")
+  init_logging(config_ini)
+  filename <- "rutils.log"
+  on.exit({
+    if (file.exists(filename)) unlink(filename)
+  })
   # sloppy sloppy test...
-  filename <- "rutils.log"  
   unlink(filename)
   expect_message(.info("test file append"), "test file append")
   expect_true(file.exists(filename))
-  if(file.exists(filename)) unlink(filename)
 })
 
 test_that("init logging initialize a logger with correct level", {
-  config.ini <- system.file("ini/logging_test.ini", package = "rutils")
-  init_logging(config.ini)
+  config_ini <- system.file("ini/logging_test.ini", package = "rutils")
+  init_logging(config_ini)
+  filename <- "rutils.log"
+  on.exit({
+    if (file.exists(filename)) unlink(filename)
+  })
   # sloppy sloppy test...
-  filename <- "rutils.log"  
+ 
   unlink(filename)
   expect_message(.trace("test file append"), NA)
   expect_false(file.exists(filename))
-  if(file.exists(filename)) unlink(filename)
+})
+
+
+test_that("loggers stringify the variables in the messages", {
+  config_ini <- system.file("ini/logging_test.ini", package = "rutils")
+  init_logging(config_ini)
+  filename <- "rutils.log"
+  on.exit({
+    if (file.exists(filename)) unlink(filename)
+  })
+
+  expect_message(.info("hello %s", "world"), "hello world")
 })
 
 
