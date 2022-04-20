@@ -1,4 +1,3 @@
-
 test_that("ini_parse works as expected", {
   fileini <- file.path(system.file(package = "rutils"), "ini/test.ini")
   ini <- ini_parse(fileini)
