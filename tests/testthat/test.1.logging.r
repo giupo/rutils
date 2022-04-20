@@ -292,7 +292,7 @@ test_that("init logging initialize a logger with correct level", {
     if (file.exists(filename)) unlink(filename)
   })
   # sloppy sloppy test...
- 
+
   unlink(filename)
   expect_message(.trace("test file append"), NA)
   expect_false(file.exists(filename))
@@ -309,5 +309,3 @@ test_that("loggers stringify the variables in the messages", {
 
   expect_message(.info("hello %s", "world"), "hello world")
 })
-
-
