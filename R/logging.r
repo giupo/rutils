@@ -111,7 +111,7 @@ appender_rolling <- function(filename, console = FALSE, inherit = TRUE,
 }
 
 #' predicate that tells if a file needs to be "rolled"
-#' 
+#'
 #' @param filename path to be checked
 #' @param max_size size beyond that filename has to be rolled
 
@@ -165,7 +165,7 @@ string_to_loglevel <- function(str_level) {
 
 
 serious_layout_colored <- function(level, msg, id = "", ...) {
-  call_level <- -10 # found empirically
+  call_level <- -11 # found empirically
 
   if (length(list(...)) > 0) {
     parsed <- lapply(list(...), function(x) if (is.null(x)) "NULL" else x)
