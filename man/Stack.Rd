@@ -24,19 +24,19 @@ Every item passed in the ellipsis is pushed in the stack
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{Stack$new()}}
-\item \href{#method-push}{\code{Stack$push()}}
-\item \href{#method-peek}{\code{Stack$peek()}}
-\item \href{#method-pop}{\code{Stack$pop()}}
-\item \href{#method-empty}{\code{Stack$empty()}}
-\item \href{#method-length}{\code{Stack$length()}}
-\item \href{#method-show}{\code{Stack$show()}}
-\item \href{#method-clone}{\code{Stack$clone()}}
+\item \href{#method-Stack-new}{\code{Stack$new()}}
+\item \href{#method-Stack-push}{\code{Stack$push()}}
+\item \href{#method-Stack-peek}{\code{Stack$peek()}}
+\item \href{#method-Stack-pop}{\code{Stack$pop()}}
+\item \href{#method-Stack-empty}{\code{Stack$empty()}}
+\item \href{#method-Stack-length}{\code{Stack$length()}}
+\item \href{#method-Stack-show}{\code{Stack$show()}}
+\item \href{#method-Stack-clone}{\code{Stack$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Stack-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Stack-new}{}}}
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Stack$new(...)}\if{html}{\out{</div>}}
@@ -52,8 +52,8 @@ Push an item in the stack}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-push"></a>}}
-\if{latex}{\out{\hypertarget{method-push}{}}}
+\if{html}{\out{<a id="method-Stack-push"></a>}}
+\if{latex}{\out{\hypertarget{method-Stack-push}{}}}
 \subsection{Method \code{push()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Stack$push(item)}\if{html}{\out{</div>}}
@@ -72,8 +72,8 @@ stack is empty}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-peek"></a>}}
-\if{latex}{\out{\hypertarget{method-peek}{}}}
+\if{html}{\out{<a id="method-Stack-peek"></a>}}
+\if{latex}{\out{\hypertarget{method-Stack-peek}{}}}
 \subsection{Method \code{peek()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Stack$peek()}\if{html}{\out{</div>}}
@@ -88,8 +88,8 @@ is empty, it raises an error.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-pop"></a>}}
-\if{latex}{\out{\hypertarget{method-pop}{}}}
+\if{html}{\out{<a id="method-Stack-pop"></a>}}
+\if{latex}{\out{\hypertarget{method-Stack-pop}{}}}
 \subsection{Method \code{pop()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Stack$pop()}\if{html}{\out{</div>}}
@@ -101,8 +101,8 @@ element on top of the stack
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-empty"></a>}}
-\if{latex}{\out{\hypertarget{method-empty}{}}}
+\if{html}{\out{<a id="method-Stack-empty"></a>}}
+\if{latex}{\out{\hypertarget{method-Stack-empty}{}}}
 \subsection{Method \code{empty()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Stack$empty()}\if{html}{\out{</div>}}
@@ -114,8 +114,8 @@ Returns the length of the stack
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-length"></a>}}
-\if{latex}{\out{\hypertarget{method-length}{}}}
+\if{html}{\out{<a id="method-Stack-length"></a>}}
+\if{latex}{\out{\hypertarget{method-Stack-length}{}}}
 \subsection{Method \code{length()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Stack$length()}\if{html}{\out{</div>}}
@@ -127,8 +127,8 @@ Internal method for object rappresentatio on REPL
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-show"></a>}}
-\if{latex}{\out{\hypertarget{method-show}{}}}
+\if{html}{\out{<a id="method-Stack-show"></a>}}
+\if{latex}{\out{\hypertarget{method-Stack-show}{}}}
 \subsection{Method \code{show()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Stack$show(sep = "\\n")}\if{html}{\out{</div>}}
@@ -143,8 +143,8 @@ Internal method for object rappresentatio on REPL
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-Stack-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Stack-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{
