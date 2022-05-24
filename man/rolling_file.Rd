@@ -6,8 +6,19 @@
 \usage{
 rolling_file(filename, max_size, max_files, lock_file)
 }
+\arguments{
+\item{filename}{path of the logging file}
+
+\item{max_size}{size in bytes before rolling (defaults 10Mb)}
+
+\item{max_files}{number of files to keep (defaults 5)}
+
+\item{lock_file}{lock file to prevent access to lock during rolling}
+}
 \description{
 Rolling of a file is based on the following conditions
- - file is bigger than a given size
- - number of rolling files are bigger than
+\itemize{
+\item file is bigger than a given size
+\item number of rolling files are bigger than
+}
 }

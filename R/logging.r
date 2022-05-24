@@ -48,8 +48,12 @@
 }
 
 
+#' Writes a message to console
+#' 
+#' @param line string with the message
+
 message_to_console <- function(line) {
-  msg <- paste(line, collapse="")
+  msg <- paste(line, collapse = "")
   cond <- simpleMessage(msg)
   class(cond) <- c("futile.logger.message", class(cond))
   message(cond)
@@ -60,12 +64,12 @@ message_to_console <- function(line) {
 #' This extends the futile.logger::appender.file2 adding
 #' rolling file capabilities
 #'
-#' @param format format of the file name
+#' @param filename path of the logging file
 #' @param console output to console
 #' @param inherit inherit levels from upper level loggers
 #' @param max_size size in bytes before rolling (defaults 10Mb)
 #' @param max_files number of files to keep (defaults 5)
-#' @param lock_file lock file to prevent access to lock during rolling 
+#' @param lock_file lock file to prevent access to lock during rolling
 #'      operations. If `NULL` no locking is performed (at your own risk)
 #' @export
 
@@ -124,6 +128,12 @@ should_roll_file <- function(filename, max_size) {
 #' Rolling of a file is based on the following conditions
 #'  - file is bigger than a given size
 #'  - number of rolling files are bigger than
+#'
+#' @md
+#' @param filename path of the logging file
+#' @param max_size size in bytes before rolling (defaults 10Mb)
+#' @param max_files number of files to keep (defaults 5)
+#' @param lock_file lock file to prevent access to lock during rolling
 
 rolling_file <- function(filename, max_size, max_files, lock_file) {
   lock <- filelock::lock(lock_file, exclusive = TRUE, timeout = Inf)

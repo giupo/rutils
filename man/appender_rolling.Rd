@@ -14,6 +14,8 @@ appender_rolling(
 )
 }
 \arguments{
+\item{filename}{path of the logging file}
+
 \item{console}{output to console}
 
 \item{inherit}{inherit levels from upper level loggers}
@@ -22,10 +24,8 @@ appender_rolling(
 
 \item{max_files}{number of files to keep (defaults 5)}
 
-\item{lock_file}{lock file to prevent access to lock during rolling 
+\item{lock_file}{lock file to prevent access to lock during rolling
 operations. If `NULL` no locking is performed (at your own risk)}
-
-\item{format}{format of the file name}
 }
 \description{
 This extends the futile.logger::appender.file2 adding

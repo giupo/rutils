@@ -138,7 +138,7 @@ test_that("rolling file creates max_files", {
   max_files <- 5
   logfile <- file.path(workdir, "file.log")
   lockfile <- file.path(workdir, ".lock")
-  junk_content <- stringi::stri_rand_strings(1, max_size + 1)
+  junk_content <- ::stri_rand_strings(1, max_size + 1)
 
   for (i in seq(1, 10)) {
     cat(junk_content, file = logfile, sep = "", append = TRUE)
@@ -299,7 +299,7 @@ test_that("init logging initialize a logger with correct level", {
 })
 
 
-test_that("loggers stringify the variables in the messages", {
+test_that("loggers fy the variables in the messages", {
   config_ini <- system.file("ini/logging_test.ini", package = "rutils")
   init_logging(config_ini)
   filename <- "rutils.log"
