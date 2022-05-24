@@ -21,7 +21,8 @@ Suggests:
     testthat,
     roxygen2,
     mockery,
-    covr
+    covr,
+    stringi
 LazyData: true
 Collate:
     'utils.r'
