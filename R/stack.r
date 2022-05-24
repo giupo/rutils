@@ -6,6 +6,7 @@
 #'  - pop
 #'  - peek
 #'
+#' @md
 #' @export
 #' @examples \dontrun{
 #'  s <- Stack()
@@ -17,15 +18,20 @@
 Stack <- R6::R6Class( # nolint
   "Stack",
   public = list(
+    #' @details
     #' Constructor for Stack
-    #' Every item passed in the ellipsis is pushed in the stack
+    #'
     #' @param ... items to be pushed in the stack
+    #'
+    #' @examples Stack$new("first")
+
     initialize = function(...) {
       for (item in list(...)) {
         self$push(item)
       }
     },
 
+    #' @details
     #' Push an item in the stack
     #'
     #' @param item object to be pushed
@@ -33,6 +39,7 @@ Stack <- R6::R6Class( # nolint
       private$stack <- append(item, private$stack)
     },
 
+    #' @details
     #' Peek an item from the stack
     #'
     #' Return the item on top of the stack. Raises an error if the
@@ -44,6 +51,7 @@ Stack <- R6::R6Class( # nolint
       private$stack[[1]]
     },
 
+    #' @details
     #' Pops an item from the stack
     #'
     #' returns and removes the item on top of the stack. If the stack
@@ -57,16 +65,19 @@ Stack <- R6::R6Class( # nolint
       ret
     },
 
+     #' @details
     #' `TRUE` is stack is empty
     #'
     #' @return `TRUE` if empty, `FALSE` otherwise
     empty = function() self$length() == 0,
 
+     #' @details
     #' Returns the length of the stack
     #'
     #' @return the number of elements in the stack
     length = function() length(private$stack),
 
+    #' @details
     #' Internal method for object rappresentatio on REPL
     #'
     #' @param sep separator used on the output

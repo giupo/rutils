@@ -7,9 +7,31 @@
 This is a stack data structure, operations you can do with it are:
 }
 \details{
-- push
- - pop
- - peek
+\itemize{
+\item push
+\item pop
+\item peek
+}
+
+Constructor for Stack
+
+Push an item in the stack
+
+Peek an item from the stack
+
+Return the item on top of the stack. Raises an error if the
+stack is empty
+
+Pops an item from the stack
+
+returns and removes the item on top of the stack. If the stack
+is empty, it raises an error.
+
+\code{TRUE} is stack is empty
+
+Returns the length of the stack
+
+Internal method for object rappresentatio on REPL
 }
 \examples{
 \dontrun{
@@ -18,8 +40,12 @@ This is a stack data structure, operations you can do with it are:
  s$peek()
  s$pop()
 }
-Constructor for Stack
-Every item passed in the ellipsis is pushed in the stack
+
+## ------------------------------------------------
+## Method `Stack$new`
+## ------------------------------------------------
+
+Stack$new("first")
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -45,11 +71,18 @@ Every item passed in the ellipsis is pushed in the stack
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{...}}{items to be pushed in the stack
-Push an item in the stack}
+\item{\code{...}}{items to be pushed in the stack}
 }
 \if{html}{\out{</div>}}
 }
+\subsection{Examples}{
+\if{html}{\out{<div class="r example copy">}}
+\preformatted{Stack$new("first")
+}
+\if{html}{\out{</div>}}
+
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Stack-push"></a>}}
@@ -62,11 +95,7 @@ Push an item in the stack}
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{item}}{object to be pushed
-Peek an item from the stack
-
-Return the item on top of the stack. Raises an error if the
-stack is empty}
+\item{\code{item}}{object to be pushed}
 }
 \if{html}{\out{</div>}}
 }
@@ -81,10 +110,6 @@ stack is empty}
 
 \subsection{Returns}{
 element on top of the stack
-Pops an item from the stack
-
-returns and removes the item on top of the stack. If the stack
-is empty, it raises an error.
 }
 }
 \if{html}{\out{<hr>}}
@@ -97,7 +122,6 @@ is empty, it raises an error.
 
 \subsection{Returns}{
 element on top of the stack
-`TRUE` is stack is empty
 }
 }
 \if{html}{\out{<hr>}}
@@ -109,8 +133,7 @@ element on top of the stack
 }
 
 \subsection{Returns}{
-`TRUE` if empty, `FALSE` otherwise
-Returns the length of the stack
+\code{TRUE} if empty, \code{FALSE} otherwise
 }
 }
 \if{html}{\out{<hr>}}
@@ -123,7 +146,6 @@ Returns the length of the stack
 
 \subsection{Returns}{
 the number of elements in the stack
-Internal method for object rappresentatio on REPL
 }
 }
 \if{html}{\out{<hr>}}
