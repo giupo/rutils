@@ -243,3 +243,22 @@ combine2 <- function(..., prefix = "", sep = "") {
 ifelse <- function(test, a, b) {
   if (test) a else b
 }
+
+#' checks for multicore environment
+#'
+#' @export
+
+check_multi_core <- function() {
+  # check sul numero di cores utilizzati
+  ln <- "rutils::check_multi_core"
+  tryCatch({
+    if (foreach::getDoParWorkers() == 1) {
+      .warn(paste(
+        "Use doMC::registerDoMC(ncores) to exploit multi-core assets",
+        "per consentire l'utilizzo del calcolo multi-core"), name = ln)
+    }
+  }, error = function(cond) {
+    .warn("Can't determine ncores, assuming 1 core (Root: %s)", cond,
+      name = ln)
+  })
+}

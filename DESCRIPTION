@@ -14,7 +14,8 @@ Imports:
     crayon,
     fs,
     configr,
-    filelock
+    filelock,
+    foreach
 License: MIT + file LICENSE
 Suggests:
     devtools,
