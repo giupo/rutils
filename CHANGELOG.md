@@ -2,6 +2,24 @@ Changelog
 =========
 
 
+v0.9.6 (2022-08-04)
+-------------------
+- Bump version: 0.9.5 → 0.9.6. [giupo]
+- Fix messed up message. [giupo]
+
+
+v0.9.5 (2022-08-04)
+-------------------
+- Bump version: 0.9.4 → 0.9.5. [giupo]
+- Update NAMESPACE. [giupo]
+
+
+v0.9.4 (2022-08-04)
+-------------------
+- Bump version: 0.9.3 → 0.9.4. [giupo]
+- Move check_multicore to rutils. [giupo]
+
+
 v0.9.3 (2022-05-24)
 -------------------
 - Bump version: 0.9.2 → 0.9.3. [giupo]
