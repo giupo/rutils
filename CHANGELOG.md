@@ -2,8 +2,9 @@ Changelog
 =========
 
 
-(unreleased)
-------------
+v0.9.7 (2022-08-05)
+-------------------
+- Bump version: 0.9.6 → 0.9.7. [giupo]
 - Updates docs. [giupo]
 - Adds prev_quarter from rcf. [giupo]
 
