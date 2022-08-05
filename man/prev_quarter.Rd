@@ -6,6 +6,10 @@
 \usage{
 prev_quarter()
 }
+\arguments{
+\item{date}{date to evaluate previous year
+quarter. (defaults to `Sys.Date()`)}
+}
 \description{
 this function returns the previous quarter compared on the current date
 }
