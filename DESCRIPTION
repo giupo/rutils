@@ -30,6 +30,7 @@ Collate:
     'ini_parse.r'
     'logging.r'
     'options.r'
+    'prev_quarter.r'
     'stack.r'
 RoxygenNote: 7.2.0
 Encoding: UTF-8
