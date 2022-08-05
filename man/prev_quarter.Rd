@@ -4,7 +4,7 @@
 \alias{prev_quarter}
 \title{this function returns the previous quarter compared on the current date}
 \usage{
-prev_quarter()
+prev_quarter(date = Sys.Date())
 }
 \arguments{
 \item{date}{date to evaluate previous year

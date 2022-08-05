@@ -15,7 +15,8 @@ Imports:
     fs,
     configr,
     filelock,
-    foreach
+    foreach,
+    zoo
 License: MIT + file LICENSE
 Suggests:
     devtools,

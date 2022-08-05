@@ -21,4 +21,5 @@ CHANGELOG.md
 \.gitlab-ci.yml
 \.lintr
 \.log
-\.gitchangelogrc
+\.gitchangelog.rc
+LICENSE.md
