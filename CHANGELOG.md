@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+v0.9.8 (2022-08-05)
+-------------------
+- Bump version: 0.9.7 → 0.9.8. [giupo]
+- R CMD checks OK. [giupo]
+
+
 v0.9.7 (2022-08-05)
 -------------------
 - Bump version: 0.9.6 → 0.9.7. [giupo]
