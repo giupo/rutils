@@ -2,6 +2,11 @@ Changelog
 =========
 
 
+(unreleased)
+------------
+- Updates DESCRIPTION. [Giuseppe Acito]
+
+
 v0.9.9 (2022-08-05)
 -------------------
 - Bump version: 0.9.8 → 0.9.9. [giupo]
