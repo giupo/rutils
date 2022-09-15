@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+v0.9.9 (2022-08-05)
+-------------------
+- Bump version: 0.9.8 → 0.9.9. [giupo]
+- Moved tests from rcf for check_multi_core. [giupo]
+
+
 v0.9.8 (2022-08-05)
 -------------------
 - Bump version: 0.9.7 → 0.9.8. [giupo]
