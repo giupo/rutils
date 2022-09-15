@@ -2,8 +2,9 @@ Changelog
 =========
 
 
-(unreleased)
-------------
+v0.9.10 (2022-09-15)
+--------------------
+- Bump version: 0.9.9 → 0.9.10. [Giuseppe Acito]
 - Updates DESCRIPTION. [Giuseppe Acito]
 
 
