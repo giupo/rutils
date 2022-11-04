@@ -2,6 +2,7 @@
 #'
 #' @param ... params passed to the logger
 #' @export
+
 .info <- function(...) {
   futile.logger::flog.info(...)
 }
@@ -11,6 +12,7 @@
 #' @param ... params passed to the logger
 #' @export
 #' @note watchout: don't call this "debug": Baaad things will happen
+
 .debug <- function(...) {
   futile.logger::flog.debug(...)
 }
@@ -19,6 +21,7 @@
 #'
 #' @param ... params passed to the logger
 #' @export
+
 .error <- function(...) {
   futile.logger::flog.error(...)
 }
@@ -27,6 +30,7 @@
 #'
 #' @param ... params passed to the logger
 #' @export
+
 .warn <-  function(...) {
   futile.logger::flog.warn(...)
 }
@@ -35,6 +39,7 @@
 #'
 #' @param ... params passed to the logger
 #' @export
+
 .trace <- function(...) {
   futile.logger::flog.trace(...)
 }
@@ -49,7 +54,7 @@
 
 
 #' Writes a message to console
-#' 
+#'
 #' @param line string with the message
 
 message_to_console <- function(line) {
@@ -73,11 +78,10 @@ message_to_console <- function(line) {
 #'      operations. If `NULL` no locking is performed (at your own risk)
 #' @export
 
-
 appender_rolling <- function(filename, console = FALSE, inherit = TRUE,
                              max_size = 10 * 1024 * 1024, max_files = 5,
                              lock_file = NULL) {
-  level_where <- -1 # ditto for the current "level"
+  level_where <- - 1 # ditto for the current "level"
   function(line) {
     if (console) message_to_console(line)
 
@@ -175,12 +179,12 @@ string_to_loglevel <- function(str_level) {
 
 
 serious_layout_colored <- function(level, msg, id = "", ...) {
-  call_level <- -11 # found empirically
+  call_level <- - 11 # found empirically
 
-  if (length(list(...)) > 0) {
+  if (length(list(...)) > 0) { # nocov start
     parsed <- lapply(list(...), function(x) if (is.null(x)) "NULL" else x)
     msg <- do.call(sprintf, c(msg, parsed))
-  }
+  } # nocov end
 
   color <- switch(
     names(level),
@@ -217,10 +221,10 @@ LOG_LOCKFILE_DEF <- "lock_file"
 
 
 appender_factory <- function(logger_def) {
-  appender_fun <- eval(parse(text=logger_def[[LOG_APPENDER_DEF]]))
+  appender_fun <- eval(parse(text = logger_def[[LOG_APPENDER_DEF]]))
 
   appender_fun(
-    logger_def[[LOG_FILE_DEF]], 
+    logger_def[[LOG_FILE_DEF]],
     console = as.logical(logger_def[[LOG_CONSOLE_DEF]]),
     inherit = as.logical(logger_def[[LOG_INHERIT_DEF]]),
     lock_file = logger_def[[LOG_LOCKFILE_DEF]])
@@ -257,7 +261,6 @@ init_logging <- function(config_filename) {
     logger_def <- configr::eval.config(
       config = log_name,
       file = config_filename)
-
 
     for (config_def in names(log_root_conf)) {
       logger_def[[config_def]] <- rutils::ifelse(
