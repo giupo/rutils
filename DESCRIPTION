@@ -25,7 +25,6 @@ Suggests:
     mockery,
     covr,
     stringi
-LazyData: true
 Collate:
     'utils.r'
     'ini_parse.r'
