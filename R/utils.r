@@ -36,7 +36,7 @@ readLines <- function(con=stdin(), n = -1L, ok =  TRUE,  #nolint
 
 whoami <- function() {
   username <- Sys.getenv("username")
-  if(username != "") {
+  if (username != "") {
     username
   } else {
     tolower(Sys.info()[["user"]])
@@ -56,11 +56,11 @@ whoami <- function() {
 #' @return the path of the newly created workdir
 
 workDir <- function(prefix = NULL) { #nolint
-  if(is.null(prefix)) {
+  if (is.null(prefix)) {
     prefix <- ifelse(is.windows(), "C:\\temp", "/tmp/work")
   }
   workdir <- file.path(prefix, whoami())
-  suppressWarnings(dir.create(workdir, recursive=TRUE))
+  suppressWarnings(dir.create(workdir, recursive = TRUE))
   workdir
 }
 
@@ -85,15 +85,15 @@ workDir <- function(prefix = NULL) { #nolint
 tempdir <- function(prefix = NULL) {
   workdir <- workDir()
 
-  if(is.null(prefix)) {
+  if (is.null(prefix)) {
     path <- file.path(workdir, .randomString())
   } else {
     path <- file.path(workdir, prefix, .randomString())
   }
 
-  suppressWarnings(dir.create(path, recursive=TRUE))
+  suppressWarnings(dir.create(path, recursive = TRUE))
 
-  if(!path %in% .tempdirs) {
+  if (!path %in% .tempdirs) {
     .tempdirs <- c(.tempdirs, path)
   }
 
@@ -120,7 +120,7 @@ tempdir <- function(prefix = NULL) {
 #' @param length lunghezza della stringa (default = 8)
 #' @param prefix evantuale prefisso (default = "")
 #' @rdname randomString
-#' @return stringa con caratteri random di lunghezza = `length` 
+#' @return stringa con caratteri random di lunghezza = `length`
 #'    ed un prefisso = `prefix`
 #' @export
 
@@ -143,7 +143,7 @@ tempdir <- function(prefix = NULL) {
 #' @export
 
 .containsString <- function(stringa, substring) # nolint
-  as.numeric(regexpr(substring, stringa)) != -1
+  as.numeric(regexpr(substring, stringa)) != - 1
 
 #' Slides the \code{x} object in \code{n} parts
 #'
@@ -173,7 +173,7 @@ slice <- function(x, n) {
 #' @param x the object to be unfold
 
 unfold <- function(x) {
-  for(name in names(x)) {
+  for (name in names(x)) {
     assign(name, x[[name]], envir = parent.frame())
   }
 }
@@ -229,7 +229,7 @@ combine2 <- function(..., prefix = "", sep = "") {
 
 #' ifelse come dio comanda
 #'
-#' Questo `ifelse0`, a differenze di `ifelse` non modifica
+#' Questo `ifelse`, a differenze di `base::ifelse` non modifica
 #' lo shape dell'oggetto ritornato. (il che, oggettivamente
 #' l'e' una bischerata)
 #'

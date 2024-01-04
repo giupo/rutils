@@ -16,7 +16,8 @@ Imports:
     configr,
     filelock,
     foreach,
-    zoo
+    zoo,
+    lubridate
 License: MIT + file LICENSE
 Suggests:
     devtools,
