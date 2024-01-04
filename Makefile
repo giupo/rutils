@@ -50,10 +50,11 @@ coverage:
 codecov:
 	Rscript -e 'covr::codecov()'
 
-CHANGELOG.md:
-	gitchangelog | grep -v "git-svn-id" > CHANGELOG.md
+NEWS.md:
+	gitchangelog | grep -v "git-svn-id" > NEWS.md
+	git add NEWS.md && git commit -m "updates NEWS.md"
 
-changelog: CHANGELOG.md
+changelog: NEWS.md
 	
 deps:
 	Rscript -e 'install.packages("R6", repos="https://cran.rstudio.com")'
