@@ -13,9 +13,6 @@ prev_quarter <- function(date = Sys.Date()) {
   third_quarter_day <- lubridate::yday(as.Date("2021-09-30")) + leap
   fourth_quarter_day <- lubridate::yday(as.Date("2023-12-31")) + leap
 
-  should_decrease_year <- day_of_the_year >= 1 &&
-    day_of_the_year <= first_quarter_day
-
   year <- lubridate::year(date)
 
   if (day_of_the_year <= first_quarter_day) {
