@@ -1,6 +1,13 @@
 # Changelog
 
 
+## v0.9.13 (2024-01-04)
+
+### Fix
+
+* Removes unused code. [Giuseppe Acito]
+
+
 ## v0.9.12 (2024-01-04)
 
 ### Other
