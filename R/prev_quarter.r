@@ -2,6 +2,7 @@
 #'
 #' @param date the date of the quarter
 #' @return the numeric repr of quarter
+#' @export
 
 quarter <- function(date = Sys.Date()) {
   as.numeric(substr(base::quarters(date), 2, 2))

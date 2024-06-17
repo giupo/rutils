@@ -14,7 +14,7 @@ ifelse(test, a, b)
 \item{b}{l'oggetto ritornato se `test` e' `FALSE`}
 }
 \description{
-Questo `ifelse0`, a differenze di `ifelse` non modifica
+Questo `ifelse`, a differenze di `base::ifelse` non modifica
 lo shape dell'oggetto ritornato. (il che, oggettivamente
 l'e' una bischerata)
 }
