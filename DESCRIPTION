@@ -16,7 +16,6 @@ Imports:
     configr,
     filelock,
     foreach,
-    zoo,
     lubridate
 License: MIT + file LICENSE
 Suggests:
@@ -27,13 +26,14 @@ Suggests:
     covr,
     stringi
 Collate:
+    'gen_unique_file.r'
     'utils.r'
     'ini_parse.r'
     'logging.r'
     'options.r'
     'prev_quarter.r'
     'stack.r'
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 Encoding: UTF-8
 Config/testthat/parallel: false
 Config/testthat/edition: 3

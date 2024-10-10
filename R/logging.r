@@ -86,22 +86,32 @@ appender_rolling <- function(filename, console = FALSE, inherit = TRUE,
     if (console) message_to_console(line)
 
     err <- function(e) {
-      stop("Illegal function call, must call from flog.trace,",
-      "flog.debug, flog.info, flog.warn, flog.error, flog.fatal, etc.")
+      stop(
+        "Illegal function call, must call from flog.trace,",
+        "flog.debug, flog.info, flog.warn, flog.error, flog.fatal, etc."
+      )
     }
 
-    the_level <- tryCatch(get("level", envir = sys.frame(level_where)),
-      error = err)
-    the_threshold <- tryCatch(get("logger", envir = sys.frame(level_where)),
-      error = err)$threshold
+    the_level <- tryCatch(
+      get("level", envir = sys.frame(level_where)),
+      error = err
+    )
 
-    if (inherit) {
-      all_levels <- c(futile.logger::FATAL, futile.logger::ERROR,
+    the_threshold <- tryCatch(
+      get("logger", envir = sys.frame(level_where)),
+      error = err
+    )$threshold
+
+    levels <- if (inherit) {
+      all_levels <- c(
+        futile.logger::FATAL, futile.logger::ERROR,
         futile.logger::WARN, futile.logger::INFO, futile.logger::DEBUG,
-        futile.logger::TRACE)
-      levels <- names(all_levels[the_level <= all_levels & all_levels <= the_threshold]) # nolint
+        futile.logger::TRACE
+      )
+
+      names(all_levels[the_level <= all_levels & all_levels <= the_threshold]) # nolint
     } else {
-      levels <- names(the_level)
+      names(the_level)
     }
 
     # the_function <- .get.parent.func.name(func_where) # nolint
@@ -157,10 +167,14 @@ rolling_file <- function(filename, max_size, max_files, lock_file) {
 }
 
 get_parent_func_name <- function(where_) {
-  the_function <- tryCatch(deparse(sys.call(where_ - 1)[[1]]),
-        error = function(e) "(shell)")
+  the_function <- tryCatch(
+    deparse(sys.call(where_ - 1)[[1]]),
+    error = function(e) "(shell)"
+  )
+
   the_function <- ifelse(
-    length(grep("flog\\.", the_function)) == 0, the_function, "(shell)")
+    length(grep("flog\\.", the_function)) == 0, the_function, "(shell)"
+  )
 
   the_function
 }
@@ -174,7 +188,8 @@ string_to_loglevel <- function(str_level) {
     "INFO"  = futile.logger::INFO,
     "DEBUG" = futile.logger::DEBUG,
     "TRACE" = futile.logger::TRACE,
-    futile.logger::INFO)
+    futile.logger::INFO
+  )
 }
 
 
@@ -194,7 +209,8 @@ serious_layout_colored <- function(level, msg, id = "", ...) {
     "INFO"  = crayon::blue,
     "DEBUG" = crayon::silver,
     "TRACE" = crayon::blurred,
-    crayon::white)
+    crayon::white
+  )
 
   glue::glue("{level} [{time} - {user} - {pid} - {func_name}] {msg}{newline}",
     level = crayon::bold(color(names(level))),
@@ -203,7 +219,8 @@ serious_layout_colored <- function(level, msg, id = "", ...) {
     pid = Sys.getpid(),
     func_name = get_parent_func_name(call_level),
     msg = msg,
-    newline = crayon::reset("\n"))
+    newline = crayon::reset("\n")
+  )
 }
 
 # begin nolint
@@ -227,7 +244,8 @@ appender_factory <- function(logger_def) {
     logger_def[[LOG_FILE_DEF]],
     console = as.logical(logger_def[[LOG_CONSOLE_DEF]]),
     inherit = as.logical(logger_def[[LOG_INHERIT_DEF]]),
-    lock_file = logger_def[[LOG_LOCKFILE_DEF]])
+    lock_file = logger_def[[LOG_LOCKFILE_DEF]]
+  )
 }
 
 #' Init logging based on configuration file
