@@ -1,6 +1,20 @@
 # Changelog
 
 
+## v0.9.17 (2024-06-17)
+
+### Other
+
+* Updated docs. [Giuseppe Acito]
+
+
+## v0.9.16 (2024-06-17)
+
+### Other
+
+* Updated prev_quarter to a decent implementation. [Giuseppe Acito]
+
+
 ## v0.9.13 (2024-01-04)
 
 ### Fix
