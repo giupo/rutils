@@ -27,7 +27,11 @@ gen_unique_filename <- function(
   # lock file management
   lock_file <- file.path(prefix, ".gen_unique_filename.lock")
   lock <- filelock::lock(lock_file)
-  on.exit(filelock::unlock(lock))
+  
+  on.exit({
+    filelock::unlock(lock)
+    file.remove(lock_file)
+  })
 
   generate_file_name <- function(n, ext = NA) {
     random_name <- create_random_chars(n, values = values)

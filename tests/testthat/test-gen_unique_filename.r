@@ -19,3 +19,15 @@ test_that("gen_unique_file changes name if file exists", {
 
   mockery::expect_called(file_exists_mock, 2)
 })
+
+
+test_that("gen_unique_file removes lock file", {
+  path <- tempdir()
+  withr::defer({
+    unlink(path, recursive = TRUE, force = TRUE)
+  })
+
+  expect_error(gen_unique_filename(prefix = path), NA)
+  expect_true(dir.exists(path))
+  expect_false(file.exists(file.path(path, ".gen_unique_filename.lock")))
+})
