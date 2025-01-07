@@ -1,6 +1,13 @@
 # Changelog
 
 
+## v0.9.20 (2025-01-07)
+
+### Other
+
+* Removes lock file after releaseing it. [Giuseppe Acito]
+
+
 ## v0.9.17 (2024-06-17)
 
 ### Other
