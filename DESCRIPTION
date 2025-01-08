@@ -29,6 +29,7 @@ Collate:
     'gen_unique_file.r'
     'utils.r'
     'ini_parse.r'
+    'is_r_project.r'
     'logging.r'
     'options.r'
     'prev_quarter.r'

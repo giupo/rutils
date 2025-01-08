@@ -27,7 +27,7 @@ gen_unique_filename <- function(
   # lock file management
   lock_file <- file.path(prefix, ".gen_unique_filename.lock")
   lock <- filelock::lock(lock_file)
-  
+
   on.exit({
     filelock::unlock(lock)
     file.remove(lock_file)
