@@ -4,7 +4,7 @@
 \alias{is_r_project}
 \title{Checks if \code{path} contains a valid R project structure}
 \usage{
-is_r_project(path)
+is_r_project(path = getwd())
 }
 \description{
 Checks if \code{path} contains:
