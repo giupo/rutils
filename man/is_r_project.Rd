@@ -6,6 +6,9 @@
 \usage{
 is_r_project(path = getwd())
 }
+\arguments{
+\item{path}{path to check for an R project (defaults to \code{getwd()})}
+}
 \description{
 Checks if \code{path} contains:
 \itemize{

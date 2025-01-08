@@ -6,6 +6,7 @@
 #' - an R directory
 #'
 #' @md
+#' @param path path to check for an R project (defaults to `getwd()`)
 #' @export
 
 is_r_project <- function(path = getwd()) {
