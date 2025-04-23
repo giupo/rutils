@@ -9,23 +9,29 @@ R_FILES := $(wildcard R/*.[R|r])
 SRC_FILES := $(wildcard src/*) $(addprefix src/, $(COPY_SRC))
 PKG_FILES := DESCRIPTION NAMESPACE $(R_FILES) $(SRC_FILES)
  
+
+# Aggiunge R ed Rscript come parametri configurabili all'esterno
+
+R_BIN ?= R
+RSCRIPT_BIN ?= Rscript
+
 .PHONY: tarball install check clean build NAMESPACE NEWS.md
  
 tarball: $(PKG_NAME)_$(PKG_VERSION).tar.gz
 $(PKG_NAME)_$(PKG_VERSION).tar.gz: $(PKG_FILES)
-	R CMD build .
+	$(R_BIN) CMD build .
  
 check: $(PKG_NAME)_$(PKG_VERSION).tar.gz
-	R CMD check $(PKG_NAME)_$(PKG_VERSION).tar.gz
+	$(R_BIN) CMD check $(PKG_NAME)_$(PKG_VERSION).tar.gz
  
 build: $(PKG_NAME)_$(PKG_VERSION).tar.gz
-	R CMD INSTALL --build $(PKG_NAME)_$(PKG_VERSION).tar.gz
+	$(R_BIN) CMD INSTALL --build $(PKG_NAME)_$(PKG_VERSION).tar.gz
  
 install: $(PKG_NAME)_$(PKG_VERSION).tar.gz
-	R --vanilla CMD INSTALL $(PKG_NAME)_$(PKG_VERSION).tar.gz
+	$(R_BIN) --vanilla CMD INSTALL $(PKG_NAME)_$(PKG_VERSION).tar.gz
  
 NAMESPACE: $(R_FILES)
-	Rscript -e "devtools::document()"
+	$(RSCRIPT_BIN) -e "devtools::document()"
 
 clean:
 	-rm -f $(PKG_NAME)_*.tar.gz
@@ -38,17 +44,17 @@ list:
 	@echo "Source files:"
 	@echo $(SRC_FILES)
 test:
-	Rscript -e 'devtools::test()'
+	$(RSCRIPT_BIN) -e 'devtools::test()'
 autotest:
-	Rscript autotest.r
+	$(RSCRIPT_BIN) autotest.r
 so:
-	Rscript --vanilla -e 'devtools::compile_dll()'
+	$(RSCRIPT_BIN) --vanilla -e 'devtools::compile_dll()'
 
 coverage:
-	Rscript -e 'covr::package_coverage()'
+	$(RSCRIPT_BIN) -e 'covr::package_coverage()'
 
 codecov:
-	Rscript -e 'covr::codecov()'
+	$(RSCRIPT_BIN) -e 'covr::codecov()'
 
 NEWS.md:
 	gitchangelog | grep -v "git-svn-id" > NEWS.md
@@ -57,5 +63,5 @@ NEWS.md:
 changelog: NEWS.md
 	
 deps:
-	Rscript -e 'install.packages("R6", repos="https://cran.rstudio.com")'
-	Rscript -e 'devtools::install_cran(c("testthat", "roxygen2", "mockery", "covr"))'
+	$(RSCRIPT_BIN) -e 'install.packages("R6", repos="https://cran.rstudio.com")'
+	$(RSCRIPT_BIN) -e 'devtools::install_cran(c("testthat", "roxygen2", "mockery", "covr"))'
