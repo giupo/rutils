@@ -2,6 +2,11 @@ Changelog
 =========
 
 
+v0.10.3 (2025-04-24)
+--------------------
+- Fix typo in CI/CD config file. [MasterOfPuppets]
+
+
 v0.10.2 (2025-04-24)
 --------------------
 - Parametrize R&Rscript in Makefile. [MasterOfPuppets]
