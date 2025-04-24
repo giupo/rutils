@@ -4,7 +4,26 @@ stages:
   - deploy
   - check
 
+.default_matrix: &r_matrix
+  parallel:
+    matrix:
+      - ENV_LABEL: "R-default"
+        R_BIN: "R"
+        R_LIBS_USER: "/home/group/public/894cf/.R/4.2.0/library"
+        RSCRIPT_BIN: "Rscript"
+      
+      - ENV_LABEL: "R-4.4.2"
+        R_BIN: "R-4.4.2"
+        R_LIBS_USER: "/home/group/public/894cf/.R/4.4.2/library"
+        RSCRIPT_BIN: "Rscript-4.4.2"
+
+      - ENV_LABEL: "R-4.5.0"
+        R_BIN: "R-4.5.0"
+        R_LIBS_USER: "/home/group/public/894cf/.R/4.5.0/library"
+        RSCRIPT_BIN: "/home/group/public/894cf/cellar/R/4.5.0/bin/Rscript"
+
 build:
+  extends: .default_matrix
   stage: build
   tags: 
     - collaudo
@@ -12,6 +31,7 @@ build:
     - make tarball
 
 test:
+ extends: .default_matrix
   stage: test
   tags: 
     - collaudo
@@ -19,6 +39,7 @@ test:
     - make test
 
 check:
+  extends: .default_matrix
   stage: check
   tags: 
     - collaudo
@@ -27,6 +48,7 @@ check:
   allow_failure: true
 
 deploy:
+  extends: .default_matrix
   stage: deploy
   tags:
     - prod
@@ -34,16 +56,17 @@ deploy:
     - make install
   allow_failure: false
     
-deploy_collaudo:
-  stage: deploy
-  tags:
-    - collaudo
-  script:
-    - make install
-  allow_failure: true
+#deploy_collaudo:
+#  stage: deploy
+#  tags:
+#    - collaudo
+#  script:
+#    - make install
+#  allow_failure: true
 
 
 coverage:
+  extends: .default_matrix
   stage: test
   tags: 
     - collaudo
