@@ -31,7 +31,7 @@ build:
     - make tarball
 
 test:
- extends: .default_matrix
+  extends: .default_matrix
   stage: test
   tags: 
     - collaudo
