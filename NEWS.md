@@ -2,8 +2,8 @@ Changelog
 =========
 
 
-(unreleased)
-------------
+v0.10.2 (2025-04-24)
+--------------------
 - Parametrize R&Rscript in Makefile. [MasterOfPuppets]
 
 
