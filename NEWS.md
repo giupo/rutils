@@ -2,6 +2,11 @@ Changelog
 =========
 
 
+v0.10.4 (2025-09-15)
+--------------------
+- Rebase with main. [MasterOfPuppets]
+
+
 v0.10.3 (2025-04-24)
 --------------------
 - Fix typo in CI/CD config file. [MasterOfPuppets]
