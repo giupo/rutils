@@ -1,27 +1,26 @@
 stages:
+  - setup
   - build
   - test
   - deploy
-  - check
 
 .default_matrix: &r_matrix
   parallel:
     matrix:
-      - ENV_LABEL: "R-default"
-        R_BIN: "R"
-        R_LIBS_USER: "/home/group/public/894cf/.R/4.2.0/library"
-        RSCRIPT_BIN: "Rscript"
-      
       - ENV_LABEL: "R-4.4.2"
         R_BIN: "R-4.4.2"
         R_LIBS_USER: "/home/group/public/894cf/.R/4.4.2/library"
         RSCRIPT_BIN: "Rscript-4.4.2"
 
+
       - ENV_LABEL: "R-4.5.0"
         R_BIN: "R-4.5.0"
-        R_LIBS_USER: "/home/group/public/894cf/.R/4.5.0/library"
+        R_LIBS_USER: "/home/group/public/894cf/.R/4.5.0/library:/home/opt/R/lib64/R/library"
         RSCRIPT_BIN: "/home/group/public/894cf/cellar/R/4.5.0/bin/Rscript"
-        
+
+  variables:
+      GIT_CLONE_PATH: "$CI_BUILDS_DIR/$CI_PIPELINE_ID/$CI_JOB_NAME"
+
   before_script:
     - |
       mkdir -p ${R_LIBS_USER}
@@ -29,59 +28,44 @@ stages:
       echo "R_BIN: ${R_BIN}"
       echo "RSCRIPT_BIN: ${RSCRIPT_BIN}"
       echo "R_LIBS_USER: ${R_LIBS_USER}"
+      echo "GIT_CLONE_PATH: ${GIT_CLONE_PATH}"
       echo " ------- ENV --------"
       echo "PATH: ${PATH}"
+  after_script:
+    - | 
+      echo "Cleaning up $GIT_CLONE_PATH"
+      rm -rf "$GIT_CLONE_PATH"
 
+setup:
+  extends: .default_matrix
+  stage: setup
+  script:
+    - make setup
 
 build:
   extends: .default_matrix
   stage: build
-  tags: 
-    - collaudo
   script:
-    - make tarball
+    - CHECK=1 make check # refe to cfin/rcfdb#1
 
 test:
   extends: .default_matrix
   stage: test
-  tags: 
-    - collaudo
-  script: 
+  script:
     - make test
 
-check:
+coverage:
   extends: .default_matrix
-  stage: check
-  tags: 
-    - collaudo
+  stage: test
   script:
-    - make check || (cat rcf.Rcheck/tests/testthat.Rout.fail && exit 1)
+    - make coverage
+  coverage: '/Coverage: \d+.\d+%/'
   allow_failure: true
 
 deploy:
   extends: .default_matrix
   stage: deploy
-  tags:
-    - prod
+  only:
+    - tags
   script:
     - make install
-  allow_failure: false
-    
-#deploy_collaudo:
-#  stage: deploy
-#  tags:
-#    - collaudo
-#  script:
-#    - make install
-#  allow_failure: true
-
-
-coverage:
-  extends: .default_matrix
-  stage: test
-  tags: 
-    - collaudo
-  script:
-    - make coverage
-    - Rscript -e 'covr::codecov()'
-  allow_failure: true

@@ -61,7 +61,10 @@ NEWS.md:
 	git add NEWS.md && git commit -m "updates NEWS.md"
 
 changelog: NEWS.md
-	
+
 deps:
 	$(RSCRIPT_BIN) -e 'install.packages("R6", repos="https://cran.rstudio.com")'
 	$(RSCRIPT_BIN) -e 'devtools::install_cran(c("testthat", "roxygen2", "mockery", "covr"))'
+
+setup:
+	$(RSCRIPT_BIN) -e 'source("/home/group/main/894cf/utils/setup.r"); install_package_deps()'
