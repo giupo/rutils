@@ -34,7 +34,7 @@ Collate:
     'options.r'
     'prev_quarter.r'
     'stack.r'
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Encoding: UTF-8
 Config/testthat/parallel: false
 Config/testthat/edition: 3
