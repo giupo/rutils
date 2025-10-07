@@ -2,18 +2,55 @@ Changelog
 =========
 
 
+v0.10.6 (2025-10-07)
+--------------------
+
+Fix
+~~~
+- Remove autotest.r. [MasterOfPuppets]
+
+
+v0.10.5 (2025-10-07)
+--------------------
+
+Changes
+~~~~~~~
+- Adds validate_description. [MasterOfPuppets]
+
+
 v0.10.4 (2025-09-15)
 --------------------
+
+Changes
+~~~~~~~
+- Adds multi version deployment. [MasterOfPuppets]
+
+Other
+~~~~~
 - Rebase with main. [MasterOfPuppets]
 
 
 v0.10.3 (2025-04-24)
 --------------------
+
+Changes
+~~~~~~~
+- Updates CI/CD config. [MasterOfPuppets]
+
+Other
+~~~~~
 - Fix typo in CI/CD config file. [MasterOfPuppets]
 
 
 v0.10.2 (2025-04-24)
 --------------------
+
+Changes
+~~~~~~~
+- Drop support for travis CD. [MasterOfPuppets]
+
+Other
+~~~~~
 - Parametrize R&Rscript in Makefile. [MasterOfPuppets]
 
 
@@ -33,6 +70,22 @@ v0.9.20 (2025-01-07)
 - Removes lock file after releaseing it. [Giuseppe Acito]
 
 
+v0.9.19 (2024-10-10)
+--------------------
+
+Fix
+~~~
+- Forgot to export gen_unique_filename. [Giuseppe Acito]
+
+
+v0.9.18 (2024-10-10)
+--------------------
+
+Changes
+~~~~~~~
+- Adds gen_unique_filename. [Giuseppe Acito]
+
+
 v0.9.17 (2024-06-17)
 --------------------
 - Updated docs. [Giuseppe Acito]
@@ -41,6 +94,14 @@ v0.9.17 (2024-06-17)
 v0.9.16 (2024-06-17)
 --------------------
 - Updated prev_quarter to a decent implementation. [Giuseppe Acito]
+
+
+v0.9.14 (2024-01-04)
+--------------------
+
+Fix
+~~~
+- Removes unused CHANGEGLOG.md. [Giuseppe Acito]
 
 
 v0.9.13 (2024-01-04)
@@ -76,15 +137,12 @@ v0.9.9 (2022-08-05)
 v0.9.8 (2022-08-05)
 -------------------
 - R CMD checks OK. [giupo]
-- Updates CHANGELOG.md. [giupo]
 
 
 v0.9.7 (2022-08-05)
 -------------------
-- Updates CHANGELOG.md. [giupo]
 - Updates docs. [giupo]
 - Adds prev_quarter from rcf. [giupo]
-- Updates CHANGELOG. [giupo]
 
 
 v0.9.6 (2022-08-04)
@@ -100,7 +158,6 @@ v0.9.5 (2022-08-04)
 v0.9.4 (2022-08-04)
 -------------------
 - Move check_multicore to rutils. [giupo]
-- Updates CHANGELOG.md. [giupo]
 
 
 v0.9.3 (2022-05-24)
