@@ -34,6 +34,7 @@ Collate:
     'options.r'
     'prev_quarter.r'
     'stack.r'
+    'validate_description.r'
 RoxygenNote: 7.3.2
 Encoding: UTF-8
 Config/testthat/parallel: false
