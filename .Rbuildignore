@@ -1,6 +1,5 @@
 Makefile
 ^build\.xml
-^autotest.r
 .Rhistory
 scent.py
 ^dist/*
