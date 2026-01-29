@@ -12,17 +12,22 @@
 
 readLines <- function(con=stdin(), n = -1L, ok =  TRUE,  #nolint
                       warn = TRUE, encoding = "unknown") {
-  tryCatch({
-    suppressWarnings(
-      base::readLines(
-        con = con, n = n, ok = ok, warn = warn, encoding = encoding))
-    }, error = function(cond) {
+  tryCatch(
+    {
+      suppressWarnings(
+        base::readLines(
+          con = con, n = n, ok = ok, warn = warn, encoding = encoding
+        )
+      )
+    },
+    error = function(cond) {
       if (is.character(con)) {
         stop('"', con, '": ', cond)
       } else {
         stop(cond)
       }
-    })
+    }
+  )
 }
 
 #' Same as *nix command

@@ -16,7 +16,9 @@ Imports:
     configr,
     filelock,
     foreach,
-    lubridate
+    lubridate,
+    bit64,
+    nanotime
 License: MIT + file LICENSE
 Suggests:
     devtools,
@@ -34,6 +36,7 @@ Collate:
     'options.r'
     'prev_quarter.r'
     'stack.r'
+    'time_in_ms.r'
     'validate_description.r'
 RoxygenNote: 7.3.2
 Encoding: UTF-8
