@@ -38,7 +38,7 @@ Collate:
     'stack.r'
     'time_in_ms.r'
     'validate_description.r'
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Encoding: UTF-8
 Config/testthat/parallel: false
 Config/testthat/edition: 3
