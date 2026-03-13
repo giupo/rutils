@@ -2,6 +2,19 @@ Changelog
 =========
 
 
+(unreleased)
+------------
+
+Changes
+~~~~~~~
+- Adds other labels for DESCRIPTION. [MasterOfPuppets]
+
+
+v0.10.7 (2026-01-29)
+--------------------
+- Adds time_in_ms. [MasterOfPuppets]
+
+
 v0.10.6 (2025-10-07)
 --------------------
 
