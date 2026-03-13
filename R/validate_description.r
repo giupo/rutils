@@ -1,7 +1,7 @@
 #' Validates a DESCRIPTION because nobody thought how to do it.
-#' 
+#'
 #' dumbasses.
-#' 
+#'
 #' @param path path to the DESCRIPTION file
 #' @export
 
@@ -17,7 +17,7 @@ validate_description <- function(path = "DESCRIPTION") {
     "Depends", "Imports", "LinkingTo", "Suggests", "Enhances",
     "SystemRequirements", "Encoding", "LazyData", "ByteCompile",
     "RoxygenNote", "Config/Needs/website", "Config/testthat/edition",
-	"Roxygen", "Collate"
+    "Roxygen", "Collate", "Config/testthat/parallel"
   )
 
   dcf <- read.dcf(path)
